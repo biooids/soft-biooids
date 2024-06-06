@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const postShema = new mongoose.Schema(
+const postSchema = new mongoose.Schema(
   {
     userId: {
       type: String,
@@ -34,10 +34,14 @@ const postShema = new mongoose.Schema(
       type: String,
       default: "", // You can set a default value or remove this line if not needed
     },
+    mainPost: {
+      type: Boolean,
+      default: false, // Default to false if not provided
+    },
   },
   { timestamps: true }
 );
 
-const Post = mongoose.model("Post", postShema);
+const Post = mongoose.model("Post", postSchema);
 
 export default Post;

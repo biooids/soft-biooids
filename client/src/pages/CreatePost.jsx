@@ -5,6 +5,7 @@ import {
   FileInput,
   Select,
   TextInput,
+  Checkbox,
   Spinner,
 } from "flowbite-react";
 import ReactQuill from "react-quill";
@@ -30,6 +31,7 @@ function CreatePost() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isQuillDisabled, setIsQuillDisabled] = useState(false); // State for Quill disable
   const [externalLink, setExternalLink] = useState(""); // State for external link
+  const [isMainPost, setIsMainPost] = useState(false); // State for main post checkbox
   const navigate = useNavigate();
 
   const handleUploadImage = async () => {
@@ -81,6 +83,7 @@ function CreatePost() {
       const postData = {
         ...formData,
         externalLink, // Include external link in the post data
+        isMainPost, // Include main post checkbox value in the post data
       };
       console.log("Post Data with External Link:", postData); // Add this line
       const res = await fetch("/api/post/create", {
@@ -141,6 +144,16 @@ function CreatePost() {
             <option value="videoapp">WebSockets and WebRTC </option>
           </Select>
         </div>
+
+        <div className="flex items-center gap-2">
+          <Checkbox
+            id="mainPost"
+            checked={isMainPost}
+            onChange={(e) => setIsMainPost(e.target.checked)}
+          />
+          <label htmlFor="mainPost">Main Post</label>
+        </div>
+
         <div className="flex flex-col gap-5 sm:flex-row justify-between items-center border-4 border-cyan-500 border-dotted p-3">
           <FileInput
             type="file"

@@ -24,6 +24,7 @@ export const create = async (req, res, next) => {
       ...req.body,
       slug,
       userId: req.user.id,
+      mainPost: req.body.mainPost || false, // Set mainPost based on the request body, defaulting to false if not provided
     });
 
     const savedPost = await newPost.save();
@@ -32,7 +33,6 @@ export const create = async (req, res, next) => {
     next(error);
   }
 };
-
 // Get posts with optional filters
 export const getposts = async (req, res, next) => {
   try {
