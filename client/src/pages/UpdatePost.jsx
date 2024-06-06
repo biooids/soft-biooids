@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Alert,
   Button,
   FileInput,
   Select,
   TextInput,
+  Checkbox,
   Spinner,
 } from "flowbite-react";
 import ReactQuill from "react-quill";
@@ -29,14 +30,15 @@ export default function UpdatePost() {
   const [publishError, setPublishError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isQuillDisabled, setIsQuillDisabled] = useState(false);
-  const [externalLink, setExternalLink] = useState(""); // Updated to empty string initially
+  const [externalLink, setExternalLink] = useState("");
+  const [isMainPost, setIsMainPost] = useState(false);
   const { postId } = useParams();
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {
-    try {
-      const fetchPost = async () => {
+    const fetchPost = async () => {
+      try {
         const res = await fetch(`/api/post/getposts?postId=${postId}`);
         const data = await res.json();
         if (!res.ok) {
@@ -44,17 +46,16 @@ export default function UpdatePost() {
           setPublishError(data.message);
           return;
         }
-        if (res.ok) {
-          setPublishError(null);
-          setFormData(data.posts[0]);
-          // Set externalLink from formData if available
-          setExternalLink(data.posts[0].externalLink || "");
-        }
-      };
-      fetchPost();
-    } catch (error) {
-      console.log(error.message);
-    }
+        setPublishError(null);
+        const post = data.posts[0];
+        setFormData(post);
+        setExternalLink(post.externalLink || "");
+        setIsMainPost(post.mainPost || false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchPost();
   }, [postId]);
 
   const handleUploadImage = async () => {
@@ -104,6 +105,7 @@ export default function UpdatePost() {
       const postData = {
         ...formData,
         externalLink,
+        mainPost: isMainPost,
       };
       console.log("Post Data with External Link:", postData);
       const res = await fetch(
@@ -122,10 +124,8 @@ export default function UpdatePost() {
         setIsSubmitting(false);
         return;
       }
-      if (res.ok) {
-        setPublishError(null);
-        navigate(`/post/${data.slug}`);
-      }
+      setPublishError(null);
+      navigate(`/post/${data.slug}`);
     } catch (error) {
       setPublishError("Something went wrong");
     } finally {
@@ -133,7 +133,6 @@ export default function UpdatePost() {
     }
   };
 
-  // Log the postData whenever form data changes
   useEffect(() => {
     console.log("Current Form Data:", formData);
   }, [formData]);
@@ -160,9 +159,32 @@ export default function UpdatePost() {
             }
             value={formData.category || ""}
           >
-            {/* Your options */}
+            <option value="uncategorized">Uncategorized</option>
+            <option value="html">HTML and CSS</option>
+            <option value="javascript">Javascript, HTML and CSS</option>
+            <option value="reactjs">React js and Tailwind</option>
+            <option value="threejs">Three js</option>
+            <option value="typscript">TypeScript</option>
+            <option value="mongo">Mongo db</option>
+            <option value="node">Node and Express</option>
+            <option value="mern">MERN Stack</option>
+            <option value="nextjs">MERN and NEXT js</option>
+            <option value="videoapp">WebSockets and WebRTC</option>
           </Select>
         </div>
+
+        <div className="flex items-center gap-2">
+          <Checkbox
+            id="mainPost"
+            checked={isMainPost}
+            onChange={(e) => {
+              setIsMainPost(e.target.checked);
+              setFormData({ ...formData, mainPost: e.target.checked });
+            }}
+          />
+          <label htmlFor="mainPost">Main Post</label>
+        </div>
+
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
           <FileInput
             type="file"

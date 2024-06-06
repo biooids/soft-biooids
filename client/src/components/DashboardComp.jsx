@@ -43,7 +43,7 @@ export default function DashboardComp() {
         const data = await res.json();
         if (res.ok) {
           setPosts(data.posts);
-          setTotalPosts(data.totalPosts);
+          setTotalPosts(data.totalPost);
           setLastMonthPosts(data.lastMonthPosts);
         }
       } catch (error) {
@@ -124,7 +124,7 @@ export default function DashboardComp() {
           <div className="flex justify-between">
             <div className="">
               <h3 className="text-gray-500 text-md uppercase">Total Posts</h3>
-              <p className="text-2xl">{totalPosts}</p>
+              <p className="text-2xl text-cyan-300">{totalPosts}</p>
             </div>
             <HiDocumentText className=" bg-purple-900 text-white rounded-full text-5xl p-3 shadow-lg" />
           </div>

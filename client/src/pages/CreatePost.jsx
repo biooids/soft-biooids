@@ -19,7 +19,6 @@ import {
 import { app } from "../firebase";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-
 import { useNavigate } from "react-router-dom";
 
 function CreatePost() {
@@ -83,7 +82,7 @@ function CreatePost() {
       const postData = {
         ...formData,
         externalLink, // Include external link in the post data
-        isMainPost, // Include main post checkbox value in the post data
+        mainPost: isMainPost, // Include main post checkbox value in the post data
       };
       console.log("Post Data with External Link:", postData); // Add this line
       const res = await fetch("/api/post/create", {
@@ -172,8 +171,8 @@ function CreatePost() {
             {imageUploadProgress ? (
               <div className="w-16 h-16">
                 <CircularProgressbar
-                  value={imageUploadProgress}
-                  text={`${imageUploadProgress || 0}%`}
+                  value={parseInt(imageUploadProgress)}
+                  text={`${imageUploadProgress}%`}
                 />
               </div>
             ) : (
@@ -181,58 +180,61 @@ function CreatePost() {
             )}
           </Button>
         </div>
+
         {imageUploadError && (
-          <Alert type="" color="failure">
-            {imageUploadError}
-          </Alert>
+          <div className="mt-2">
+            <Alert color="failure" withBorderAccent>
+              <span>{imageUploadError}</span>
+            </Alert>
+          </div>
         )}
+
         {formData.image && (
           <img
             src={formData.image}
-            alt="upload"
-            className="w-full h-72 object-cover"
+            alt="Uploaded"
+            className="w-full h-72 object-cover mt-4"
           />
         )}
-        <ReactQuill
-          theme="snow"
-          placeholder="Write some content..."
-          className="h-72 mb-12"
-          required
-          onChange={(value) => {
-            setFormData({ ...formData, content: value });
-          }}
-          onError={(error) => console.error("ReactQuill Error:", error)}
-          readOnly={isQuillDisabled} // Set readOnly based on state
-        />
-        <TextInput
-          type="text"
-          placeholder="External Link (Optional)"
-          id="externalLink"
-          value={externalLink}
-          onChange={(e) => setExternalLink(e.target.value)}
-        />
+
+        <div>
+          <ReactQuill
+            theme="snow"
+            placeholder="Your content here..."
+            value={formData.content || ""}
+            onChange={(value) => setFormData({ ...formData, content: value })}
+            readOnly={isQuillDisabled} // Disable Quill editor when isQuillDisabled is true
+            className="h-52"
+          />
+        </div>
+
+        <div className="flex flex-col gap-5 sm:flex-row justify-between">
+          <TextInput
+            type="text"
+            placeholder="External Link"
+            id="externalLink"
+            value={externalLink}
+            onChange={(e) => setExternalLink(e.target.value)}
+            className="flex-1"
+          />
+        </div>
+
         <Button
-          className="text-cyan-100"
           type="submit"
-          gradientDuoTone="purpleToPink"
-          disabled={imageUploadProgress || isSubmitting} // Disable when uploading or submitting
+          gradientDuoTone="greenToBlue"
+          disabled={isSubmitting}
         >
-          {imageUploadProgress ? (
-            "Uploading Image, and the text area is disabled..."
-          ) : isSubmitting ? (
-            <div className="flex items-center">
-              <Spinner size="lg" /> Submitting
-            </div>
-          ) : (
-            "Publish"
-          )}
+          {isSubmitting ? <Spinner /> : "Publish"}
         </Button>
+
+        {publishError && (
+          <div className="mt-2">
+            <Alert color="failure" withBorderAccent>
+              <span>{publishError}</span>
+            </Alert>
+          </div>
+        )}
       </form>
-      {publishError && (
-        <Alert type="" color="failure" className="mt-4">
-          {publishError}
-        </Alert>
-      )}
     </div>
   );
 }

@@ -77,13 +77,13 @@ function DashPosts() {
   };
 
   return (
-    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-500 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+    <div className="table-auto overflow-x-scroll  p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-500 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
       {loading ? (
         <div className="flex justify-center w-full items-center min-h-screen">
           <Spinner size="xl" />
         </div>
       ) : currentUser.isAdmin && userPosts.length > 0 ? (
-        <>
+        <div className="">
           <Table hoverable className="shadow-md">
             <Table.Head>
               <Table.HeadCell>DATE Updated</Table.HeadCell>
@@ -145,7 +145,7 @@ function DashPosts() {
               Show more
             </Button>
           )}
-        </>
+        </div>
       ) : (
         <p>There are no posts available. You have not created any posts yet.</p>
       )}

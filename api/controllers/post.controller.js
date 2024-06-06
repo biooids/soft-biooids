@@ -33,6 +33,7 @@ export const create = async (req, res, next) => {
     next(error);
   }
 };
+
 // Get posts with optional filters
 export const getposts = async (req, res, next) => {
   try {
@@ -122,6 +123,7 @@ export const updatepost = async (req, res, next) => {
           category: req.body.category,
           image: req.body.image,
           externalLink: req.body.externalLink,
+          mainPost: req.body.mainPost, // Ensure mainPost is updated
         },
       },
       { new: true }

@@ -25,7 +25,7 @@ function SignIn() {
     e.preventDefault();
 
     if (!formData.password || !formData.email) {
-      dispatch(signInFailure("Please fill out all the fields"));
+      dispatch(signInFailure("Please fill out all fields"));
       return;
     }
 
@@ -65,44 +65,39 @@ function SignIn() {
   return (
     <div className="min-h-screen mt-20">
       <div className="flex gap-5 flex-col p-3 max-w-3xl mx-auto md:flex-row md:items-center">
-        {/* left */}
         <div className="flex-1">
           <Link
             to="/"
             className="sm:text-xl text-sm self-center whitespace-nowrap font-semibold dark:text-cyan-100 flex items-center gap-1 sm:gap-3"
           >
-            <span className="w-12 h-12 rounded-full overflow-hidden  inline-block">
+            <span className="w-12 h-12 rounded-full overflow-hidden inline-block">
               <img src={logo} alt="" className="w-full h-full object-cover" />
             </span>
             Soft-biooid
           </Link>
           <p className="text-lg mt-5">
-            Welcome back to Soft-biooid! Sign in now to access your account and
-            explore the latest articles, discussions, and updates. Dive into a
-            world of technology, innovation, and creativity. Whether you're here
-            to share your insights or to stay informed, Soft-biooid has
-            everything you need. Sign in today and join our vibrant community!
+            Welcome back to Soft-biooid! Sign in now to continue exploring
+            projects and technologies used. Connect with like-minded individuals
+            and stay updated with the latest developments. If you don't have an
+            account yet, sign up today and embark on a journey of discovery!
           </p>
         </div>
-
-        {/* right */}
         <div className="flex-1">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div>
-              <Label value="your email" />
+              <Label value="Your email" />
               <TextInput
                 type="email"
-                placeholder="email"
+                placeholder="Email"
                 id="email"
                 onChange={handleChange}
               />
             </div>
-
             <div>
-              <Label value="your password" />
+              <Label value="Your password" />
               <TextInput
                 type="password"
-                placeholder="password"
+                placeholder="Password"
                 id="password"
                 onChange={handleChange}
               />
@@ -115,7 +110,7 @@ function SignIn() {
               {loading ? (
                 <>
                   <Spinner size="sm" />
-                  <span className="p-3">loading please wait...</span>
+                  <span className="p-3">Loading, please wait...</span>
                 </>
               ) : (
                 "Sign In"
@@ -123,9 +118,8 @@ function SignIn() {
             </Button>
             <OAuth />
           </form>
-
           <div className="flex gap-2 text-sm mt-5">
-            <span>Don't Have an account??</span>
+            <span>Don't have an account?</span>
             <Link to="/sign-up" className="text-blue-500 hover:underline">
               Sign Up
             </Link>
