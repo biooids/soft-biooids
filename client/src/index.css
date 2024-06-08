@@ -34,3 +34,6 @@ body {
 .dark .post-content strong {
   color: rgb(0, 206, 206);
 }
+.top-projects {
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}

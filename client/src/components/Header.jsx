@@ -66,13 +66,7 @@ function Header() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const sanitizedSearchTerm = inputSearchTerm.trim().replace(/\s+/g, "+");
-    const urlParams = new URLSearchParams(location.search);
-    urlParams.set("searchTerm", sanitizedSearchTerm);
-    urlParams.delete("sort");
-    urlParams.delete("category");
-    let searchQuery = urlParams.toString();
-    searchQuery = searchQuery.replace(/%2B/g, "+"); // Manually replace %2B with +
-    navigate(`/search?${searchQuery}`);
+    navigate(`/search?searchTerm=${sanitizedSearchTerm}`);
   };
 
   return (

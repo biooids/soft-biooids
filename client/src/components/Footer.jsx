@@ -65,14 +65,14 @@ function FooterComp() {
               />
               <Footer.LinkGroup col>
                 <Footer.Link
-                  href="https://www.tiktok.com/@navi__biooid?is_from_webapp=1&sender_device=pc"
+                  href="http://tiktok.com/@navi_biooid?is_from_webapp=1&sender_device=pc"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Tiktok
                 </Footer.Link>
                 <Footer.Link
-                  href="https://www.instagram.com/soft_biooid_test"
+                  href="https://www.instagram.com/soft_biooid?igsh=aXp3bDJkMWpvM2t3"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

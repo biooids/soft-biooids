@@ -6,7 +6,6 @@ import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Projects from "./pages/Projects";
-import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 import CreatePost from "./pages/CreatePost";
@@ -20,6 +19,7 @@ import Landing from "./pages/Landing";
 import Sell from "./pages/Sell";
 import ScrollToTop from "./pages/ScrollToTop";
 import MainLayoute from "./pages/MainLayoute";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -27,7 +27,6 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Landing />} />
-
         <Route element={<MainLayoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -50,6 +49,7 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/post/:postSlug" element={<PostPage />} />
         </Route>
+        <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
       </Routes>
     </BrowserRouter>
   );
