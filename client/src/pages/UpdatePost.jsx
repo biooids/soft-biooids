@@ -219,6 +219,7 @@ export default function UpdatePost() {
             className="w-full h-72 object-cover"
           />
         )}
+
         <ReactQuill
           theme="snow"
           value={formData.content || ""}
@@ -236,6 +237,7 @@ export default function UpdatePost() {
           id="externalLink"
           value={externalLink}
           onChange={(e) => setExternalLink(e.target.value)}
+          className="flex-1"
         />
         <Button
           className="text-cyan-100"

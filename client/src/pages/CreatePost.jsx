@@ -113,7 +113,7 @@ function CreatePost() {
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-5 sm:flex-row justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
             type="text"
             placeholder="Title"
@@ -124,11 +124,11 @@ function CreatePost() {
               setFormData({ ...formData, title: e.target.value })
             }
           />
-
           <Select
-            onChange={(e) => {
-              setFormData({ ...formData, category: e.target.value });
-            }}
+            onChange={(e) =>
+              setFormData({ ...formData, category: e.target.value })
+            }
+            value={formData.category || ""}
           >
             <option value="uncategorized">Uncategorized</option>
             <option value="html">HTML and CSS</option>
@@ -140,7 +140,7 @@ function CreatePost() {
             <option value="node">Node and Express</option>
             <option value="mern">MERN Stack</option>
             <option value="nextjs">MERN and NEXT js</option>
-            <option value="videoapp">WebSockets and WebRTC </option>
+            <option value="videoapp">WebSockets and WebRTC</option>
           </Select>
         </div>
 
@@ -148,18 +148,20 @@ function CreatePost() {
           <Checkbox
             id="mainPost"
             checked={isMainPost}
-            onChange={(e) => setIsMainPost(e.target.checked)}
+            onChange={(e) => {
+              setIsMainPost(e.target.checked);
+              setFormData({ ...formData, mainPost: e.target.checked });
+            }}
           />
           <label htmlFor="mainPost">Main Post</label>
         </div>
 
-        <div className="flex flex-col gap-5 sm:flex-row justify-between items-center border-4 border-cyan-500 border-dotted p-3">
+        <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
           <FileInput
             type="file"
             accept="image/*"
             onChange={(e) => setFile(e.target.files[0])}
           />
-
           <Button
             type="button"
             gradientDuoTone="purpleToBlue"
@@ -171,8 +173,8 @@ function CreatePost() {
             {imageUploadProgress ? (
               <div className="w-16 h-16">
                 <CircularProgressbar
-                  value={parseInt(imageUploadProgress)}
-                  text={`${imageUploadProgress}%`}
+                  value={imageUploadProgress}
+                  text={`${imageUploadProgress || 0}%`}
                 />
               </div>
             ) : (
@@ -181,58 +183,55 @@ function CreatePost() {
           </Button>
         </div>
 
-        {imageUploadError && (
-          <div className="mt-2">
-            <Alert color="failure" withBorderAccent>
-              <span>{imageUploadError}</span>
-            </Alert>
-          </div>
-        )}
-
+        {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
         {formData.image && (
           <img
             src={formData.image}
-            alt="Uploaded"
-            className="w-full h-72 object-cover mt-4"
+            alt="upload"
+            className="w-full h-72 object-cover"
           />
         )}
 
-        <div>
-          <ReactQuill
-            theme="snow"
-            placeholder="Your content here..."
-            value={formData.content || ""}
-            onChange={(value) => setFormData({ ...formData, content: value })}
-            readOnly={isQuillDisabled} // Disable Quill editor when isQuillDisabled is true
-            className="h-52"
-          />
-        </div>
-
-        <div className="flex flex-col gap-5 sm:flex-row justify-between">
-          <TextInput
-            type="text"
-            placeholder="External Link"
-            id="externalLink"
-            value={externalLink}
-            onChange={(e) => setExternalLink(e.target.value)}
-            className="flex-1"
-          />
-        </div>
-
+        <ReactQuill
+          theme="snow"
+          value={formData.content || ""}
+          placeholder="Write something..."
+          className="h-72 mb-12"
+          required
+          onChange={(value) => {
+            setFormData({ ...formData, content: value });
+          }}
+          readOnly={isQuillDisabled} // Disable Quill editor when isQuillDisabled is true
+        />
+        <TextInput
+          type="text"
+          placeholder="External Link"
+          id="externalLink"
+          value={externalLink}
+          onChange={(e) => setExternalLink(e.target.value)}
+          className="flex-1"
+        />
         <Button
+          className="text-cyan-100"
           type="submit"
-          gradientDuoTone="greenToBlue"
-          disabled={isSubmitting}
+          gradientDuoTone="purpleToPink"
+          disabled={imageUploadProgress || isSubmitting}
         >
-          {isSubmitting ? <Spinner /> : "Publish"}
+          {imageUploadProgress ? (
+            "Uploading Image, and the text area is disable..."
+          ) : isSubmitting ? (
+            <div className="flex items-center">
+              <Spinner size="lg" /> Submitting
+            </div>
+          ) : (
+            "Publish"
+          )}
         </Button>
 
         {publishError && (
-          <div className="mt-2">
-            <Alert color="failure" withBorderAccent>
-              <span>{publishError}</span>
-            </Alert>
-          </div>
+          <Alert className="mt-5" color="failure">
+            {publishError}
+          </Alert>
         )}
       </form>
     </div>

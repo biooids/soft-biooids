@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Spinner } from "flowbite-react";
+import { Button } from "flowbite-react";
 import CallToAction from "../components/CallToAction";
 import PostCard from "../components/PostCard";
+import PostCardSkeleton from "../components/PostCardSkeleton";
 import myImage from "../assets/me1.png";
 
 import { AiFillInstagram } from "react-icons/ai";
@@ -47,14 +48,6 @@ export default function Home() {
     fetchPosts();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <Spinner size="xl" />
-      </div>
-    );
-  }
-
   const mainPosts = posts.filter((post) => post.mainPost);
 
   return (
@@ -62,17 +55,17 @@ export default function Home() {
       <div className="flex flex-col gap-6  px-3 max-w-6xl mx-auto mb-10">
         <div className="md:h-[70vh] md:grid md:grid-cols-2 flex flex-col ">
           <div className="flex flex-col justify-center gap-3 bg-slate-950 bg-opacity-20 p-5">
-            <h1 className="font-bold sm:text-2xl lg:text-3xl   ">
-              Welcom to soft-biooid
+            <h1 className="font-bold sm:text-2xl lg:text-3xl">
+              Welcome to soft-biooid
             </h1>
-            <p className="dark:text-cyan-400 text-xs sm:text-sm ">
+            <p className="dark:text-cyan-400 text-xs sm:text-sm">
               Here you'll find a variety of articles about my projects. I'm
               building some cool stuff along the way like full stack apps with
               MERN stack, HTML, CSS, JAVASCRIPT, even 3D websites using 3JS and
               more.
             </p>
             <p className="dark:text-purple-500 flex gap-3">
-              Am a full stack developer :{" "}
+              I am a full stack developer:{" "}
               <a
                 href="https://github.com/biooids"
                 className="dark:text-cyan-100 font-bold text-2xl hover:dark:text-cyan-300"
@@ -81,7 +74,6 @@ export default function Home() {
                 <FaGithub />
               </a>
             </p>
-
             <Link
               to="/search"
               className="text-sm sm:text-lg dark:text-cyan-100 font-bold  hover:dark:text-cyan-300 underline w-fit"
@@ -89,7 +81,7 @@ export default function Home() {
               Explore projects &#8594;
             </Link>
           </div>
-          <div className=" top-o h-full  relative">
+          <div className="top-o h-full relative">
             <img
               src={myImage}
               alt="my image"
@@ -99,40 +91,39 @@ export default function Home() {
         </div>
 
         <div className="flex gap-5 relative flex-col sm:flex-row">
-          <div className="w-full sm:w-[20%] sm:sticky h-fit top-0 flex flex-col  p-3 sm:p-0">
-            <p className="">Buy This Web App For:</p>
+          <div className="w-full sm:w-[20%] sm:sticky h-fit top-0 flex flex-col p-3 sm:p-0">
+            <p>Buy This Web App For:</p>
             <div className="flex gap-1 text-red-500">
-              <span className="text-nowrap ">550 </span>
-              <span className="text-nowrap  line-through">600</span>
+              <span className="text-nowrap">550</span>
+              <span className="text-nowrap line-through">600</span>
               USD
             </div>
-            <p className="mt-2 mb-5">Contact me for deal :</p>
-            <div className="text-2xl flex  justify-between pb-5 border-b-2 border-b-cyan-500">
+            <p className="mt-2 mb-5">Contact me for deal:</p>
+            <div className="text-2xl flex justify-between pb-5 border-b-2 border-b-cyan-500">
               <a
                 href="mailto:ehwapyongm@gmail.com"
-                className=" dark:hover:text-cyan-100"
+                className="dark:hover:text-cyan-100"
                 target="_blank"
               >
                 <MdEmail />
               </a>
               <a
                 href="https://wa.me/+250790931024?text=Hello,%20I'm%20interested%20in%20your%20work"
-                className=" dark:hover:text-cyan-100"
+                className="dark:hover:text-cyan-100"
                 target="_blank"
               >
                 <IoLogoWhatsapp />
               </a>
-
               <a
                 href="https://www.instagram.com/soft_biooid?igsh=aXp3bDJkMWpvM2t3"
-                className=" dark:hover:text-cyan-100"
+                className="dark:hover:text-cyan-100"
                 target="_blank"
               >
                 <AiFillInstagram />
               </a>
             </div>
           </div>
-          <div className="dark:text-purple-700 text-xs sm:text-sm border-b-8 p-5 gap-5 flex flex-col border-t-8 border-cyan-400 rounded-xl sm:w-[60%] ">
+          <div className="dark:text-purple-700 text-xs sm:text-sm border-b-8 p-5 gap-5 flex flex-col border-t-8 border-cyan-400 rounded-xl sm:w-[60%]">
             <h3 className="font-semibold text-center">Tech Stack</h3>
             <div className="flex justify-between flex-wrap gap-4">
               <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
@@ -217,7 +208,7 @@ export default function Home() {
             </div>
           </div>
           <div className="sm:w-[20%]">
-            Am a free lancer you can{" "}
+            I am a freelancer. You can{" "}
             <span className="text-nowrap text-purple-500 underline">
               Hire me
             </span>
@@ -236,7 +227,11 @@ export default function Home() {
           My Top Projects
         </h2>
         <div className="flex flex-wrap justify-center items-center md:grid top-projects gap-4">
-          {mainPosts.length > 0 ? (
+          {loading ? (
+            Array.from({ length: 3 }).map((_, index) => (
+              <PostCardSkeleton key={index} />
+            ))
+          ) : mainPosts.length > 0 ? (
             mainPosts.map((post) => <PostCard key={post._id} post={post} />)
           ) : (
             <div className="text-center text-xl font-semibold text-red-600">
@@ -247,7 +242,13 @@ export default function Home() {
       </div>
 
       <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7">
-        {posts && posts.length > 0 ? (
+        {loading ? (
+          <div className="flex flex-wrap justify-center items-center md:grid top-projects gap-4">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <PostCardSkeleton key={index} />
+            ))}
+          </div>
+        ) : posts && posts.length > 0 ? (
           <div className="flex flex-col gap-6">
             <h2 className="text-2xl font-semibold text-center sm:text-start dark:text-cyan-500">
               Recent Posts

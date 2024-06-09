@@ -19,7 +19,7 @@ function Dashboard() {
   }, [location.search]);
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="min-h-screen flex flex-col md:flex-row overflow-x-auto">
       {/* side bar */}
       <div className="md:w-56">
         <DashSidebar />
@@ -33,12 +33,10 @@ function Dashboard() {
       {/* users */}
       {tab === "users" && <DashUsers />}
 
-      {/* coments */}
-
+      {/* comments */}
       {tab === "comments" && <DashComments />}
 
       {/* dashboard */}
-
       {tab === "dash" && <DashboardComp />}
     </div>
   );

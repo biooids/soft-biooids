@@ -103,7 +103,7 @@ function PostPage() {
       </div>
       <div className="flex flex-col items-center bg-cyan-100 mt-10  p-3 w-full dark:bg-black">
         <h1 className="text-xl mt-5">Recent Articles</h1>
-        <div className="flex flex-wrap gap-5 mt-5 justify-center">
+        <div className="flex flex-wrap justify-center items-center md:grid grid-cols-3 top-projects w-full gap-4 ">
           {recentPosts &&
             recentPosts.map((post) => <PostCard key={post._id} post={post} />)}
         </div>

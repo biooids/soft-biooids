@@ -1,9 +1,10 @@
-import { Alert, Button, Modal, TextInput, Textarea } from "flowbite-react";
+import { Alert, Button, Modal, Textarea } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Comment from "./Comment";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { Spinner } from "flowbite-react";
 
 export default function CommentSection({ postId }) {
   const { currentUser } = useSelector((state) => state.user);
@@ -12,12 +13,15 @@ export default function CommentSection({ postId }) {
   const [comments, setComments] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [commentToDelete, setCommentToDelete] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (comment.length > 200) {
       return;
     }
+    setIsSubmitting(true);
     try {
       const res = await fetch("/api/comment/create", {
         method: "POST",
@@ -38,6 +42,8 @@ export default function CommentSection({ postId }) {
       }
     } catch (error) {
       setCommentError(error.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -103,13 +109,13 @@ export default function CommentSection({ postId }) {
         method: "DELETE",
       });
       if (res.ok) {
-        const data = await res.json();
         setComments(comments.filter((comment) => comment._id !== commentId));
       }
     } catch (error) {
       console.log(error.message);
     }
   };
+
   return (
     <div className="max-w-2xl mx-auto w-full p-3">
       {currentUser ? (
@@ -151,8 +157,20 @@ export default function CommentSection({ postId }) {
             <p className="text-sm">
               {200 - comment.length} characters remaining
             </p>
-            <Button outline gradientDuoTone="purpleToBlue" type="submit">
-              Submit
+            <Button
+              outline
+              gradientDuoTone="purpleToBlue"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <div className="flex items-center gap-2">
+                  <Spinner size="sm" light />
+                  Submitting
+                </div>
+              ) : (
+                "Submit"
+              )}
             </Button>
           </div>
           {commentError && (

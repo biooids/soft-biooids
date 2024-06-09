@@ -20,20 +20,33 @@ body {
   font-size: 2rem;
   font-weight: 600;
   font-family: sans-serif;
+  color: rgb(255, 0, 255);
+  margin-bottom: 2rem;
+  text-align: center;
+  padding: 1rem 0;
+
+  border-bottom: 2px solid rgb(255, 0, 255);
 }
 .post-content h2 {
   font-size: 1.5rem;
   font-weight: 600;
   font-family: sans-serif;
+  color: #ffbf00;
+  margin-bottom: 2rem;
+  border-bottom: 2px dashed #ffbf00;
+  width: -moz-fit-content;
+  width: fit-content;
+
+  padding: 0.5rem 0;
 }
 .post-content h3 {
   font-size: 1.17rem;
   font-weight: 600;
   font-family: sans-serif;
+
+  color: rgb(153, 255, 0);
 }
-.dark .post-content strong {
-  color: rgb(0, 206, 206);
-}
+
 .top-projects {
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }

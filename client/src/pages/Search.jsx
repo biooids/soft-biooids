@@ -1,7 +1,8 @@
-import { Button, Select, Spinner } from "flowbite-react";
+import { Button, Select } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import PostCard from "../components/PostCard";
+import PostCardSkeleton from "../components/PostCardSkeleton";
 
 export default function Search() {
   const [sidebarData, setSidebarData] = useState({
@@ -14,6 +15,7 @@ export default function Search() {
   const [loading, setLoading] = useState(true);
   const [showMore, setShowMore] = useState(false);
   const [showLess, setShowLess] = useState(false);
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -71,6 +73,7 @@ export default function Search() {
   };
 
   const handleShowMore = async () => {
+    setIsFetchingMore(true);
     const numberOfPosts = posts.length;
     const startIndex = numberOfPosts;
     const urlParams = new URLSearchParams(location.search);
@@ -78,12 +81,14 @@ export default function Search() {
     const searchQuery = urlParams.toString();
     const res = await fetch(`/api/post/getposts?${searchQuery}`);
     if (!res.ok) {
+      setIsFetchingMore(false);
       return;
     }
     const data = await res.json();
     setPosts([...posts, ...data.posts]);
     setShowMore(data.posts.length === 9);
     setShowLess(true);
+    setIsFetchingMore(false);
   };
 
   const handleShowLess = () => {
@@ -113,7 +118,6 @@ export default function Search() {
               {sidebarData.searchTerm.trim() === "" && (
                 <option value="nocategory">Select a category</option>
               )}
-
               <option value="uncategorized">Uncategorized</option>
               <option value="html">HTML and CSS</option>
               <option value="javascript">Javascript, HTML and CSS</option>
@@ -144,7 +148,10 @@ export default function Search() {
           Project results:
         </h1>
         <div className="flex flex-wrap justify-center items-center md:grid top-projects gap-4">
-          {loading && <Spinner size="xl" />}
+          {loading &&
+            Array.from({ length: 9 }).map((_, index) => (
+              <PostCardSkeleton key={index} />
+            ))}
           {!loading && posts.length === 0 && (
             <p className="text-xl text-gray-500">No posts found.</p>
           )}
@@ -153,13 +160,21 @@ export default function Search() {
             posts.map((post) => <PostCard key={post._id} post={post} />)}
         </div>
         <div className="m-7">
-          {" "}
           {showMore && (
             <button
               onClick={handleShowMore}
-              className="w-full h-full inline-bloc text-cyan-100 bg-cyan-900 rounded-md text-center p-5 dark:bg-cyan-900 dark:text-cyan-100 hover:underline font-bold transition-all duration-300"
+              className={`w-full h-full inline-bloc text-cyan-100 bg-cyan-900 rounded-md text-center p-5 dark:bg-cyan-900 dark:text-cyan-100 font-bold transition-all duration-300 ${
+                isFetchingMore ? "cursor-not-allowed" : "hover:underline"
+              }`}
+              disabled={isFetchingMore}
             >
-              Show More &darr;
+              {isFetchingMore ? (
+                <div className="flex items-center gap-2 justify-center">
+                  Loading...
+                </div>
+              ) : (
+                "Show More ↓"
+              )}
             </button>
           )}
           {showLess && (
@@ -167,7 +182,7 @@ export default function Search() {
               onClick={handleShowLess}
               className="w-full h-full inline-bloc text-cyan-100 bg-cyan-900 rounded-md text-center p-5 dark:bg-cyan-900 dark:text-cyan-100 hover:underline font-bold transition-all duration-300"
             >
-              Show Less &uarr;
+              Show Less ↑
             </button>
           )}
         </div>

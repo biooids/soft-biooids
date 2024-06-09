@@ -99,7 +99,7 @@ function DashUsers() {
                     <img
                       src={user.profilePicture}
                       alt={user.username}
-                      className="w-20 h-20 object-cover bg-gray-500 rounded-3xl"
+                      className="w-full h-full object-cover bg-gray-500 rounded-3xl"
                     />
                   </Table.Cell>
                   <Table.Cell className="w-1/2">{user.username}</Table.Cell>

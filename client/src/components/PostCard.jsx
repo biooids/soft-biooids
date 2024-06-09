@@ -1,13 +1,19 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import PostCardSkeleton from "./PostCardSkeleton";
 
 export default function PostCard({ post }) {
+  if (!post) {
+    return <PostCardSkeleton />;
+  }
+
   return (
-    <div className="group relative  border-2 border-teal-500 h-[400px] overflow-hidden rounded-lg w-[430px] sm:w-full transition-all">
+    <div className="group relative border-2 border-teal-500 h-[400px] overflow-hidden rounded-lg w-[430px] sm:w-full transition-all">
       <Link to={`/post/${post.slug}`}>
         <img
           src={post.image}
           alt="post cover"
-          className="h-[240px] w-full  object-cover group-hover:h-[150px] transition-all duration-300 z-20"
+          className="h-[240px] w-full object-cover group-hover:h-[150px] transition-all duration-300 z-20"
         />
       </Link>
       <div className="p-3 flex flex-col gap-2">
