@@ -2,13 +2,15 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { Button, Textarea } from "flowbite-react";
+import { Button, Spinner, Textarea } from "flowbite-react";
 
 export default function Comment({ comment, onLike, onEdit, onDelete }) {
   const [user, setUser] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
+  const [loadingLike, setLoadingLike] = useState(false); // Added state for like button loading
   const { currentUser } = useSelector((state) => state.user);
+
   useEffect(() => {
     const getUser = async () => {
       try {
@@ -48,6 +50,13 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
       console.log(error.message);
     }
   };
+
+  const handleLike = async () => {
+    setLoadingLike(true); // Set loading state to true when like action is triggered
+    await onLike(comment._id);
+    setLoadingLike(false); // Reset loading state after the like action is completed
+  };
+
   return (
     <div className="flex p-4 border-b dark:border-gray-600 text-sm">
       <div className="flex-shrink-0 mr-3">
@@ -99,14 +108,19 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
             <div className="flex items-center pt-2 text-xs border-t dark:border-gray-700 max-w-fit gap-2">
               <button
                 type="button"
-                onClick={() => onLike(comment._id)}
+                onClick={handleLike}
                 className={`text-gray-400 hover:text-blue-500 ${
                   currentUser &&
                   comment.likes.includes(currentUser._id) &&
                   "!text-blue-500"
                 }`}
+                disabled={loadingLike} // Disable the button when loading
               >
-                <FaThumbsUp className="text-sm" />
+                {loadingLike ? (
+                  <Spinner size="sm" /> // Show spinner when loading
+                ) : (
+                  <FaThumbsUp className="text-sm" />
+                )}
               </button>
               <p className="text-gray-400">
                 {comment.numberOfLikes > 0 &&

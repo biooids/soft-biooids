@@ -99,7 +99,7 @@ export default function Search() {
 
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="p-7 border-b md:border-r md:min-h-screen border-gray-500">
+      <div className="p-7 border-b md:border-r  border-gray-500 sticky top-0  h-fit">
         <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
           <div>
             <label className="font-semibold">Sort:</label>
@@ -159,12 +159,12 @@ export default function Search() {
             posts &&
             posts.map((post) => <PostCard key={post._id} post={post} />)}
         </div>
-        <div className="m-7">
+        <div className="m-7 flex flex-col md:flex-row gap-5">
           {showMore && (
             <button
               onClick={handleShowMore}
               className={`w-full h-full inline-bloc text-cyan-100 bg-cyan-900 rounded-md text-center p-5 dark:bg-cyan-900 dark:text-cyan-100 font-bold transition-all duration-300 ${
-                isFetchingMore ? "cursor-not-allowed" : "hover:underline"
+                isFetchingMore ? "cursor-not-allowed" : "hover:underline "
               }`}
               disabled={isFetchingMore}
             >
