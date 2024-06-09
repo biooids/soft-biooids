@@ -219,7 +219,7 @@ function DashProfile() {
                   path: {
                     stroke: `rgba(76, 175, 80, ${
                       imageFileUploadProgress / 100
-                    })`, // Change to green color
+                    })`,
                   },
                 }}
               />
@@ -244,7 +244,7 @@ function DashProfile() {
           placeholder="Username"
           defaultValue={currentUser.username}
           onChange={handleChange}
-          className="w-full" // Making the TextInput full width
+          className="w-full"
         />
         <TextInput
           type="email"
@@ -252,14 +252,14 @@ function DashProfile() {
           placeholder="Email"
           defaultValue={currentUser.email}
           onChange={handleChange}
-          className="w-full" // Making the TextInput full width
+          className="w-full"
         />
         <TextInput
           type="password"
           id="password"
           placeholder="Password"
           onChange={handleChange}
-          className="w-full" // Making the TextInput full width
+          className="w-full"
         />
         <Button
           type="submit"

@@ -29,7 +29,6 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-//creating a modal
 
 const User = mongoose.model("User", userSchema);
 export default User;

@@ -24,7 +24,7 @@ export const create = async (req, res, next) => {
       ...req.body,
       slug,
       userId: req.user.id,
-      mainPost: req.body.mainPost || false, // Set mainPost based on the request body, defaulting to false if not provided
+      mainPost: req.body.mainPost || false,
     });
 
     const savedPost = await newPost.save();
@@ -95,7 +95,6 @@ export const deletepost = async (req, res, next) => {
     }
 
     await Post.findByIdAndDelete(req.params.postId);
-    console.log("Post deleted successfully");
     res.status(200).json("Post has been deleted");
   } catch (error) {
     next(error);
@@ -123,7 +122,7 @@ export const updatepost = async (req, res, next) => {
           category: req.body.category,
           image: req.body.image,
           externalLink: req.body.externalLink,
-          mainPost: req.body.mainPost, // Ensure mainPost is updated
+          mainPost: req.body.mainPost,
         },
       },
       { new: true }

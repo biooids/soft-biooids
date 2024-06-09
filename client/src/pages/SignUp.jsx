@@ -9,7 +9,7 @@ import {
   signUpStart,
   signUpSuccess,
   signUpFailure,
-} from "../redux/user/userSlice"; // Import your Redux actions
+} from "../redux/user/userSlice";
 
 function SignUp() {
   const [formData, setFormData] = useState({});

@@ -32,11 +32,11 @@ const postSchema = new mongoose.Schema(
     },
     externalLink: {
       type: String,
-      default: "", // You can set a default value or remove this line if not needed
+      default: "",
     },
     mainPost: {
       type: Boolean,
-      default: false, // Default to false if not provided
+      default: false,
     },
   },
   { timestamps: true }

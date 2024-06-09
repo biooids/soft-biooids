@@ -1,5 +1,5 @@
 import User from "../models/user.model.js";
-import bcryptjs from "bcryptjs"; //import it here for the password hashing function to work in node
+import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import Jwt from "jsonwebtoken";
 
@@ -19,7 +19,7 @@ export const signup = async (req, res, next) => {
     );
   }
 
-  const hashedPassword = bcryptjs.hashSync(password, 10); // rounds 10, and has its wait called async
+  const hashedPassword = bcryptjs.hashSync(password, 10);
 
   const newUser = new User({
     username,
@@ -56,7 +56,7 @@ export const signin = async (req, res, next) => {
     const token = Jwt.sign(
       { id: validUser._id, isAdmin: validUser.isAdmin },
       process.env.JWT_SECRETE,
-      { expiresIn: "365d" } // Token will expire in 365 days
+      { expiresIn: "365d" }
     );
 
     const { password: pass, ...rest } = validUser._doc;
@@ -64,7 +64,7 @@ export const signin = async (req, res, next) => {
       .status(200)
       .cookie("access_token", token, {
         httpOnly: true,
-        maxAge: 365 * 24 * 60 * 60 * 1000, // 365 days in milliseconds
+        maxAge: 365 * 24 * 60 * 60 * 1000,
       })
       .json(rest);
   } catch (error) {
@@ -80,14 +80,14 @@ export const google = async (req, res, next) => {
       const token = Jwt.sign(
         { id: user.id, isAdmin: user.isAdmin },
         process.env.JWT_SECRETE,
-        { expiresIn: "365d" } // Token will expire in 365 days
+        { expiresIn: "365d" }
       );
       const { password, ...rest } = user._doc;
       res
         .status(200)
         .cookie("access_token", token, {
           httpOnly: true,
-          maxAge: 365 * 24 * 60 * 60 * 1000, // 365 days in milliseconds
+          maxAge: 365 * 24 * 60 * 60 * 1000,
         })
         .json(rest);
     } else {
@@ -108,14 +108,14 @@ export const google = async (req, res, next) => {
       const token = Jwt.sign(
         { id: newUser._id, isAdmin: newUser.isAdmin },
         process.env.JWT_SECRETE,
-        { expiresIn: "365d" } // Token will expire in 365 days
+        { expiresIn: "365d" }
       );
       const { password, ...rest } = newUser._doc;
       res
         .status(200)
         .cookie("access_token", token, {
           httpOnly: true,
-          maxAge: 365 * 24 * 60 * 60 * 1000, // 365 days in milliseconds
+          maxAge: 365 * 24 * 60 * 60 * 1000,
         })
         .json(rest);
     }

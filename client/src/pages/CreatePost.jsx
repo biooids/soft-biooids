@@ -28,9 +28,9 @@ function CreatePost() {
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isQuillDisabled, setIsQuillDisabled] = useState(false); // State for Quill disable
-  const [externalLink, setExternalLink] = useState(""); // State for external link
-  const [isMainPost, setIsMainPost] = useState(false); // State for main post checkbox
+  const [isQuillDisabled, setIsQuillDisabled] = useState(false);
+  const [externalLink, setExternalLink] = useState("");
+  const [isMainPost, setIsMainPost] = useState(false);
   const navigate = useNavigate();
 
   const handleUploadImage = async () => {
@@ -50,20 +50,20 @@ function CreatePost() {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setImageUploadProgress(progress.toFixed(0));
-          setIsQuillDisabled(true); // Disable Quill while uploading
+          setIsQuillDisabled(true);
         },
         (error) => {
           console.error("Upload error:", error.message);
           setImageUploadError("Uploading the image failed: " + error.message);
           setImageUploadProgress(null);
-          setIsQuillDisabled(false); // Enable Quill on error
+          setIsQuillDisabled(false);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setImageUploadProgress(null);
             setImageUploadError(null);
             setFormData({ ...formData, image: downloadURL });
-            setIsQuillDisabled(false); // Enable Quill after successful upload
+            setIsQuillDisabled(false);
           });
         }
       );
@@ -71,20 +71,20 @@ function CreatePost() {
       console.error("Image upload failed:", error);
       setImageUploadError("Image upload failed");
       setImageUploadProgress(null);
-      setIsQuillDisabled(false); // Enable Quill on error
+      setIsQuillDisabled(false);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setIsSubmitting(true); // Set the state to indicate submitting
+      setIsSubmitting(true);
       const postData = {
         ...formData,
-        externalLink, // Include external link in the post data
-        mainPost: isMainPost, // Include main post checkbox value in the post data
+        externalLink,
+        mainPost: isMainPost,
       };
-      console.log("Post Data with External Link:", postData); // Add this line
+      console.log("Post Data with External Link:", postData);
       const res = await fetch("/api/post/create", {
         method: "POST",
         headers: {
@@ -95,7 +95,7 @@ function CreatePost() {
       const data = await res.json();
       if (!res.ok) {
         setPublishError(data.message);
-        setIsSubmitting(false); // Reset the state on failure
+        setIsSubmitting(false);
         return;
       }
       if (res.ok) {
@@ -105,7 +105,7 @@ function CreatePost() {
     } catch (error) {
       setPublishError("Something went wrong: " + error.message);
     } finally {
-      setIsSubmitting(false); // Reset the state after the operation is complete
+      setIsSubmitting(false);
     }
   };
 
@@ -168,7 +168,7 @@ function CreatePost() {
             size="sm"
             outline
             onClick={handleUploadImage}
-            disabled={imageUploadProgress || isSubmitting} // Disable when uploading or submitting
+            disabled={imageUploadProgress || isSubmitting}
           >
             {imageUploadProgress ? (
               <div className="w-16 h-16">
@@ -201,7 +201,7 @@ function CreatePost() {
           onChange={(value) => {
             setFormData({ ...formData, content: value });
           }}
-          readOnly={isQuillDisabled} // Disable Quill editor when isQuillDisabled is true
+          readOnly={isQuillDisabled}
         />
         <TextInput
           type="text"

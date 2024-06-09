@@ -15,7 +15,6 @@ import { SiMongodb } from "react-icons/si";
 import { FaReact } from "react-icons/fa";
 import { IoLogoNodejs } from "react-icons/io5";
 import { SiExpress } from "react-icons/si";
-
 import { FaHtml5 } from "react-icons/fa";
 import { FaCss3Alt } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io5";
@@ -29,6 +28,7 @@ import { FaGithub } from "react-icons/fa";
 import { SiNextdotjs } from "react-icons/si";
 import { SiTypescript } from "react-icons/si";
 import { TiCloudStorage } from "react-icons/ti";
+import { FaCirclePlay } from "react-icons/fa6";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -80,6 +80,13 @@ export default function Home() {
             >
               Explore projects &#8594;
             </Link>
+            <a
+              href=""
+              className="text-sm sm:text-lg flex justify-center items-center w-fit gap-1 dark:text-cyan-100 font-bold  hover:dark:text-cyan-300 underline"
+            >
+              <FaCirclePlay />
+              How it works &#8594;
+            </a>
           </div>
           <div className="top-o h-full relative">
             <img

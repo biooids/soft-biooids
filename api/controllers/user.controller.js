@@ -42,7 +42,6 @@ export const updateUser = async (req, res, next) => {
         );
       }
     }
-    console.log(req.body.username);
     const updateUser = await User.findByIdAndUpdate(
       req.params.userId,
       {
@@ -55,7 +54,6 @@ export const updateUser = async (req, res, next) => {
       },
       { new: true }
     );
-    console.log(updateUser.profilePicture); // Log the updateUser object
 
     const { password, ...rest } = updateUser._doc;
     res.status(200).json(rest);

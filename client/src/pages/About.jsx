@@ -1,6 +1,10 @@
 import React from "react";
-import { Button, Checkbox, Label, TextInput, Textarea } from "flowbite-react";
-import { Link } from "react-router-dom";
+
+import { AiFillInstagram } from "react-icons/ai";
+import { FaTiktok } from "react-icons/fa6";
+import { IoLogoWhatsapp } from "react-icons/io";
+import { MdEmail } from "react-icons/md";
+import { Avatar } from "flowbite-react";
 
 function About() {
   return (
@@ -25,6 +29,59 @@ function About() {
               through clean code and user-centric design. Let's collaborate to
               build something exceptional for your online presence.
             </p>
+            <div className="flex flex-wrap gap-2">
+              <Avatar.Group>
+                <Avatar
+                  img="https://randomuser.me/api/portraits/men/1.jpg"
+                  rounded
+                  stacked
+                />
+                <Avatar
+                  img="https://randomuser.me/api/portraits/women/2.jpg"
+                  rounded
+                  stacked
+                />
+                <Avatar
+                  img="https://randomuser.me/api/portraits/men/3.jpg"
+                  rounded
+                  stacked
+                />
+                <Avatar
+                  img="https://randomuser.me/api/portraits/women/4.jpg"
+                  rounded
+                  stacked
+                />
+                <Avatar
+                  img="https://randomuser.me/api/portraits/men/5.jpg"
+                  rounded
+                  stacked
+                />
+              </Avatar.Group>
+              <Avatar.Group>
+                <Avatar
+                  img="https://randomuser.me/api/portraits/women/6.jpg"
+                  rounded
+                  stacked
+                />
+                <Avatar
+                  img="https://randomuser.me/api/portraits/men/7.jpg"
+                  rounded
+                  stacked
+                />
+                <Avatar
+                  img="https://randomuser.me/api/portraits/women/8.jpg"
+                  rounded
+                  stacked
+                />
+                <Avatar
+                  img="https://randomuser.me/api/portraits/men/9.jpg"
+                  rounded
+                  stacked
+                />
+                <Avatar.Counter total={+9} href="#" />
+              </Avatar.Group>
+            </div>
+            <p>Not real people by the way 🙄 🙄 🤷‍♂️🤷‍♂️ </p>
             <p>
               Whether you're envisioning a sleek online store, a captivating
               blog to share your stories, or a professional showcase of your
@@ -34,73 +91,36 @@ function About() {
             </p>
           </div>
         </div>
-        <div className="dark:text-cyan-500">
-          <form className="flex max-w-md flex-col gap-4">
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="email2"
-                  value="Your email"
-                  className="dark:text-cyan-500"
-                />
-              </div>
-              <TextInput
-                id="email2"
-                type="email"
-                placeholder="name@flowbite.com"
-                required
-                shadow
-              />
-            </div>
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="firstName"
-                  value="Your First Name"
-                  className="dark:text-cyan-500"
-                />
-              </div>
-              <TextInput id="firstName" type="text" required shadow />
-            </div>
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="lastName"
-                  value="Your Last Name"
-                  className="dark:text-cyan-500"
-                />
-              </div>
-              <TextInput id="lastName" type="text" required shadow />
-            </div>
-            <div className="flex items-center gap-2">
-              <Checkbox id="agree" required />
-              <Label htmlFor="agree" className="flex dark:text-cyan-500">
-                I agree with the&nbsp;
-                <Link
-                  to="/terms"
-                  className="text-cyan-600 hover:underline dark:text-cyan-500"
-                >
-                  terms and conditions
-                </Link>
-              </Label>
-            </div>
-            <div className="max-w-md">
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="comment"
-                  value="Your message"
-                  className="dark:text-cyan-500"
-                />
-              </div>
-              <Textarea
-                id="comment"
-                placeholder="Leave a comment..."
-                required
-                rows={4}
-              />
-            </div>
-            <Button type="submit">Contact me</Button>
-          </form>
+        <div className="flex gap-6 sm:mt-6 mt-4 sm:justify-center items-center ">
+          <p>Contact Me :</p>
+          <a
+            href="mailto:ehwapyongm@gmail.com"
+            className=" dark:hover:text-cyan-100"
+            target="_blank"
+          >
+            <MdEmail />
+          </a>
+          <a
+            href="https://wa.me/+250790931024?text=Hello,%20I'm%20interested%20in%20your%20work"
+            className=" dark:hover:text-cyan-100"
+            target="_blank"
+          >
+            <IoLogoWhatsapp />
+          </a>
+          <a
+            href="https://www.tiktok.com/@navi__biooid?is_from_webapp=1&sender_device=pc"
+            className=" dark:hover:text-cyan-100"
+            target="_blank"
+          >
+            <FaTiktok />
+          </a>
+          <a
+            href="https://www.instagram.com/soft_biooid_test"
+            className=" dark:hover:text-cyan-100"
+            target="_blank"
+          >
+            <AiFillInstagram />
+          </a>
         </div>
       </div>
     </div>
