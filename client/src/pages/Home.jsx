@@ -80,13 +80,13 @@ export default function Home() {
             >
               Explore projects &#8594;
             </Link>
-            <a
+            {/* <a
               href=""
               className="text-sm sm:text-lg flex justify-center items-center w-fit gap-1 dark:text-cyan-100 font-bold  hover:dark:text-cyan-300 underline"
             >
               <FaCirclePlay />
               How it works &#8594;
-            </a>
+            </a> */}
           </div>
           <div className="top-o h-full relative">
             <img
