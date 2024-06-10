@@ -49,25 +49,30 @@ function OAuth() {
   };
 
   return (
-    <Button
-      type="button"
-      gradientDuoTone="pinkToOrange"
-      outline
-      onClick={handleGoogleClick}
-      disabled={loading}
-    >
-      {loading ? (
-        <>
-          <Spinner size="sm" />
-          <span className="p-3">Waiting...</span>
-        </>
-      ) : (
-        <>
-          <FaGoogle className="w-6 h-6 text-red-700 mr-2" />
-          Continue with Google
-        </>
-      )}
-    </Button>
+    <>
+      <p className="m-2 text-amber-500 text-center">
+        Or continue with google if applicable
+      </p>
+      <Button
+        type="button"
+        gradientDuoTone="pinkToOrange"
+        outline
+        onClick={handleGoogleClick}
+        disabled={loading}
+      >
+        {loading ? (
+          <>
+            <Spinner size="sm" />
+            <span className="p-3">Waiting...</span>
+          </>
+        ) : (
+          <>
+            <FaGoogle className="w-6 h-6 text-red-700 mr-2" />
+            Continue with Google
+          </>
+        )}
+      </Button>
+    </>
   );
 }
 

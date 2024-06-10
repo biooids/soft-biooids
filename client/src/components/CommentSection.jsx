@@ -65,7 +65,7 @@ export default function CommentSection({ postId }) {
   const handleLike = async (commentId) => {
     try {
       if (!currentUser) {
-        navigate("/sign-in");
+        navigate("/sign-up");
         return;
       }
       const res = await fetch(`/api/comment/likeComment/${commentId}`, {
@@ -102,7 +102,7 @@ export default function CommentSection({ postId }) {
     setShowModal(false);
     try {
       if (!currentUser) {
-        navigate("/sign-in");
+        navigate("/sign-up");
         return;
       }
       const res = await fetch(`/api/comment/deleteComment/${commentId}`, {
@@ -136,8 +136,11 @@ export default function CommentSection({ postId }) {
       ) : (
         <div className="text-lg dark:text-amber-300 my-5 flex gap-1">
           You must be signed in to comment.
-          <Link className="text-blue-500 hover:underline" to={"/sign-in"}>
-            Sign In
+          <Link
+            className="w-fit  text-purple-950 font-semibold p-1 rounded-md  bg-cyan-300 hover:bg-cyan-500 transition-all duration-300"
+            to={"/sign-up"}
+          >
+            Sign Up
           </Link>
         </div>
       )}

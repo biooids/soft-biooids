@@ -99,7 +99,7 @@ export default function Search() {
 
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="p-7 border-b md:border-r  border-gray-500 sticky top-0  h-fit">
+      <div className="p-7 border-b md:border-r  border-gray-500 md:sticky top-0  h-fit">
         <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
           <div>
             <label className="font-semibold">Sort:</label>

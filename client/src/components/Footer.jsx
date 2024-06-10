@@ -22,7 +22,7 @@ function FooterComp() {
               <span className="w-12 h-12 rounded-full overflow-hidden  inline-block">
                 <img src={logo} alt="" className="w-full h-full object-cover" />
               </span>
-              Soft-biooid
+              Soft-biooids
             </Link>
             <p className="text-xs text-end hidden sm:block">
               The future is among us
@@ -98,9 +98,9 @@ function FooterComp() {
         </div>
 
         <div className="w-full sm:flex sm:items-center sm:justify-between">
-          <Footer.Copyright href="#" by="gna-biooid blog" year={2024} />
+          <Footer.Copyright href="#" by="soft-biooids" year={2024} />
         </div>
-
+        <div>version : 0.0.1</div>
         <div className="flex gap-6 sm:mt-6 mt-4 sm:justify-center items-center ">
           <p>Contact Me :</p>
           <a
