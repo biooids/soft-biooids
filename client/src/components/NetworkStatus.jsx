@@ -69,7 +69,7 @@ const NetworkStatus = () => {
       {!isOnline && (
         <Alert
           color="failure"
-          className="fixed top-0 left-0 right-0 z-50 flex w-[30%] mx-auto"
+          className="fixed top-0 left-0 right-0 z-50 flex "
         >
           <IoMdWarning /> You are currently offline. Some features may not be
           available. Turn Off and On the internet connection source. Internet

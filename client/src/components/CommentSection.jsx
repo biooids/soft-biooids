@@ -137,7 +137,7 @@ export default function CommentSection({ postId }) {
         <div className="text-lg dark:text-amber-300 my-5 flex gap-1">
           You must be signed in to comment.
           <Link
-            className="w-fit  text-purple-950 font-semibold p-1 rounded-md  bg-cyan-300 hover:bg-cyan-500 transition-all duration-300"
+            className="w-fit  text-purple-950 font-semibold p-1 rounded-md  bg-cyan-300 hover:bg-cyan-500 transition-all text-nowrap duration-300"
             to={"/sign-up"}
           >
             Sign Up

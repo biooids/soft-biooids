@@ -100,7 +100,7 @@ function FooterComp() {
         <div className="w-full sm:flex sm:items-center sm:justify-between">
           <Footer.Copyright href="#" by="soft-biooids" year={2024} />
         </div>
-        <div>version : 0.0.1</div>
+        <div>version : 0.0.2</div>
         <div className="flex gap-6 sm:mt-6 mt-4 sm:justify-center items-center ">
           <p>Contact Me :</p>
           <a
