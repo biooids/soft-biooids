@@ -61,7 +61,7 @@ function Landing() {
               // Same substring at the start will only be typed once, initially
               "Hello Human 👋 !",
               1000,
-              "This is soft-biooid official web site ",
+              "This is soft-biooids official web site ",
               1000,
               "Click the button below to enter",
               1000,

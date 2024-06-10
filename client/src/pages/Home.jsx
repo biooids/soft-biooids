@@ -56,7 +56,7 @@ export default function Home() {
         <div className="md:h-[70vh] md:grid md:grid-cols-2 flex flex-col ">
           <div className="flex flex-col justify-center gap-3 bg-slate-950 bg-opacity-20 p-5">
             <h1 className="font-bold sm:text-2xl lg:text-3xl">
-              Welcome to soft-biooid
+              Welcome to soft-biooids
             </h1>
             <p className="dark:text-cyan-400 text-xs sm:text-sm">
               Here you'll find a variety of articles about my projects. I'm
