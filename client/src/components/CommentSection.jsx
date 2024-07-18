@@ -11,6 +11,7 @@ export default function CommentSection({ postId }) {
   const [comment, setComment] = useState("");
   const [commentError, setCommentError] = useState(null);
   const [comments, setComments] = useState([]);
+  const [totalComments, setTotalComments] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [commentToDelete, setCommentToDelete] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,6 +40,7 @@ export default function CommentSection({ postId }) {
         setComment("");
         setCommentError(null);
         setComments([data, ...comments]);
+        setTotalComments(totalComments + 1); // Update total comments
       }
     } catch (error) {
       setCommentError(error.message);
@@ -53,7 +55,8 @@ export default function CommentSection({ postId }) {
         const res = await fetch(`/api/comment/getPostComments/${postId}`);
         if (res.ok) {
           const data = await res.json();
-          setComments(data);
+          setComments(data.comments);
+          setTotalComments(data.totalComments); // Set total comments from response
         }
       } catch (error) {
         console.log(error.message);
@@ -110,6 +113,7 @@ export default function CommentSection({ postId }) {
       });
       if (res.ok) {
         setComments(comments.filter((comment) => comment._id !== commentId));
+        setTotalComments(totalComments - 1); // Update total comments
       }
     } catch (error) {
       console.log(error.message);
@@ -137,7 +141,7 @@ export default function CommentSection({ postId }) {
         <div className="text-lg dark:text-amber-300 my-5 flex gap-1">
           You must be signed in to comment.
           <Link
-            className="w-fit  text-purple-950 font-semibold p-1 rounded-md  bg-cyan-300 hover:bg-cyan-500 transition-all text-nowrap duration-300"
+            className="w-fit  text-purple-950 font-semibold p-1 rounded-md flex justify-center items-center bg-cyan-300 hover:bg-cyan-500 transition-all text-nowrap duration-300"
             to={"/sign-up"}
           >
             Sign Up
@@ -188,10 +192,7 @@ export default function CommentSection({ postId }) {
       ) : (
         <>
           <div className="text-sm my-5 flex items-center gap-1">
-            <p>Comments</p>
-            <div className="border border-gray-500 py-1 px-2 rounded-sm">
-              <p>{comments.length}</p>
-            </div>
+            <p>Comments: {totalComments}</p>
           </div>
 
           {comments.map((comment) => (

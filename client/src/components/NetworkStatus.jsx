@@ -35,7 +35,7 @@ const NetworkStatus = () => {
         dispatch(setOnline());
         setShowOnlineMessage(true);
         await measureSpeed();
-        setTimeout(() => setShowOnlineMessage(false), 3000);
+        setTimeout(() => setShowOnlineMessage(false), 1000);
       } else {
         dispatch(setOffline());
       }
@@ -47,7 +47,7 @@ const NetworkStatus = () => {
       dispatch(setOnline());
       setShowOnlineMessage(true);
       await measureSpeed();
-      setTimeout(() => setShowOnlineMessage(false), 3000);
+      setTimeout(() => setShowOnlineMessage(false), 1000);
     };
 
     const handleOffline = () => {
@@ -69,7 +69,7 @@ const NetworkStatus = () => {
       {!isOnline && (
         <Alert
           color="failure"
-          className="fixed top-0 left-0 right-0 z-50 flex "
+          className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center items-center "
         >
           <IoMdWarning /> You are currently offline. Some features may not be
           available. Turn Off and On the internet connection source. Internet
@@ -79,7 +79,7 @@ const NetworkStatus = () => {
       {isOnline && showOnlineMessage && (
         <Alert
           color="success"
-          className="fixed top-0 left-0 right-0 z-50 w-[30%] mx-auto"
+          className="fixed top-0 left-0 right-0 z-50  flex justify-center items-center"
         >
           <IoMdWarning /> You are back online. Internet speed:{" "}
           {speed ? `${speed} Mbps` : "0.0Mbps"}

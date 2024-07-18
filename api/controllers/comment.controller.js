@@ -28,7 +28,8 @@ export const getPostComments = async (req, res, next) => {
     const comments = await Comment.find({ postId: req.params.postId }).sort({
       createdAt: -1,
     });
-    res.status(200).json(comments);
+    const totalComments = comments.length; // Calculate the total number of comments
+    res.status(200).json({ comments, totalComments }); // Return comments and totalComments
   } catch (error) {
     next(error);
   }
@@ -106,7 +107,7 @@ export const getcomments = async (req, res, next) => {
     const limit = parseInt(req.query.limit) || 9;
     const sortDirection = req.query.sort === "desc" ? -1 : 1;
     const comments = await Comment.find()
-      .sort({ createdAt: sortDirection })
+      .sort({ createdAt: -1 }) // Force sorting in descending order
       .skip(startIndex)
       .limit(limit);
     const totalComments = await Comment.countDocuments();

@@ -1,8 +1,10 @@
-import { Button, Select } from "flowbite-react";
+import { Button, Select, Sidebar } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import PostCard from "../components/PostCard";
 import PostCardSkeleton from "../components/PostCardSkeleton";
+import HomeSidebar from "./HomeSidebar";
+import codingGif from "../assets/a2.gif";
 
 export default function Search() {
   const [sidebarData, setSidebarData] = useState({
@@ -99,8 +101,11 @@ export default function Search() {
 
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="p-7 border-b md:border-r  border-gray-500 md:sticky top-0  h-fit">
-        <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
+      <Sidebar
+        className=" border-b md:border-r m-auto md:m-0
+       border-gray-500 md:sticky top-0  h-fit"
+      >
+        <form className="flex flex-col gap-8 mb-3" onSubmit={handleSubmit}>
           <div>
             <label className="font-semibold">Sort:</label>
             <Select onChange={handleChange} value={sidebarData.sort} id="sort">
@@ -142,11 +147,21 @@ export default function Search() {
             Remove Filters
           </button>
         </form>
-      </div>
+        <HomeSidebar />
+      </Sidebar>
       <div className="w-full ">
-        <h1 className="text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5 text-center">
-          Project results:
-        </h1>
+        <div>
+          <div className="w-full h-[200px] p-3 ">
+            <img
+              src={codingGif}
+              alt="coding gif"
+              className="w-full h-full object-cover rounded-lg "
+            />
+          </div>
+          <h1 className="text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-3 text-center">
+            Project results:
+          </h1>
+        </div>
         <div className="flex flex-wrap justify-center items-center md:grid top-projects gap-4">
           {loading &&
             Array.from({ length: 9 }).map((_, index) => (

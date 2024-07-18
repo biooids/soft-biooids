@@ -183,10 +183,12 @@ export default function DashboardComp() {
               comments.map((comment) => (
                 <Table.Body key={comment._id} className="divide-y">
                   <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                    <Table.Cell className="w-96">
-                      <p className="line-clamp-2">{comment.content}</p>
+                    <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
+                      {comment.content}
                     </Table.Cell>
-                    <Table.Cell>{comment.numberOfLikes}</Table.Cell>
+                    <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
+                      {comment.numberOfLikes}
+                    </Table.Cell>
                   </Table.Row>
                 </Table.Body>
               ))}
@@ -194,7 +196,7 @@ export default function DashboardComp() {
         </div>
         <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
           <div className="flex justify-between  p-3 text-sm font-semibold">
-            <h1 className="text-center p-2">Recent posts</h1>
+            <h1 className="text-center p-2">Recent projects</h1>
             <Button outline gradientDuoTone="purpleToPink">
               <Link to={"/dashboard?tab=posts"}>See all</Link>
             </Button>
@@ -209,15 +211,19 @@ export default function DashboardComp() {
               posts.map((post) => (
                 <Table.Body key={post._id} className="divide-y">
                   <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                    <Table.Cell>
+                    <Table.Cell className=" w-[200px] h-[200px]">
                       <img
                         src={post.image}
                         alt="user"
-                        className="w-14 h-10 rounded-md bg-gray-500"
+                        className="w-full h-full object-cover"
                       />
                     </Table.Cell>
-                    <Table.Cell className="w-96">{post.title}</Table.Cell>
-                    <Table.Cell className="w-5">{post.category}</Table.Cell>
+                    <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
+                      {post.title}
+                    </Table.Cell>
+                    <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
+                      {post.category}
+                    </Table.Cell>
                   </Table.Row>
                 </Table.Body>
               ))}

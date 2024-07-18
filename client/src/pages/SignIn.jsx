@@ -73,13 +73,11 @@ function SignIn() {
             <span className="w-12 h-12 rounded-full overflow-hidden inline-block">
               <img src={logo} alt="" className="w-full h-full object-cover" />
             </span>
-            Soft-biooid
+            Soft-biooids
           </Link>
           <p className="text-lg mt-5">
-            Welcome back to Soft-biooid! Sign in now to continue exploring
-            projects and technologies used. Connect with like-minded individuals
-            and stay updated with the latest developments. If you don't have an
-            account yet, sign up today and embark on a journey of discovery!
+            Welcome back to Soft-biooids! Sign in now to continue exploring
+            projects and technologies used.
           </p>
         </div>
         <div className="flex-1">

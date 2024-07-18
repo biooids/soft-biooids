@@ -84,7 +84,6 @@ function CreatePost() {
         externalLink,
         mainPost: isMainPost,
       };
-      console.log("Post Data with External Link:", postData);
       const res = await fetch("/api/post/create", {
         method: "POST",
         headers: {
@@ -111,7 +110,12 @@ function CreatePost() {
 
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
+      <h1 className="text-center text-3xl my-7 font-semibold flex flex-col gap-2">
+        Create a post
+        <span className="text-xs">
+          make the title shorter for easy reading{" "}
+        </span>{" "}
+      </h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput

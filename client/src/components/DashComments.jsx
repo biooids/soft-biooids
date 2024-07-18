@@ -14,7 +14,7 @@ export default function DashComments() {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await fetch(`/api/comment/getcomments`);
+        const res = await fetch(`/api/comment/getcomments?sort=desc`);
         const data = await res.json();
         if (res.ok) {
           setComments(data.comments);
@@ -37,7 +37,7 @@ export default function DashComments() {
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `/api/comment/getcomments?startIndex=${startIndex}`
+        `/api/comment/getcomments?startIndex=${startIndex}&sort=desc`
       );
       const data = await res.json();
       if (res.ok) {
@@ -94,14 +94,22 @@ export default function DashComments() {
             {comments.map((comment) => (
               <Table.Body className="divide-y" key={comment._id}>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell>
+                  <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
                     {new Date(comment.updatedAt).toLocaleDateString()}
                   </Table.Cell>
-                  <Table.Cell>{comment.content}</Table.Cell>
-                  <Table.Cell>{comment.numberOfLikes}</Table.Cell>
-                  <Table.Cell>{comment.postId}</Table.Cell>
-                  <Table.Cell>{comment.userId}</Table.Cell>
-                  <Table.Cell>
+                  <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
+                    {comment.content}
+                  </Table.Cell>
+                  <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
+                    {comment.numberOfLikes}
+                  </Table.Cell>
+                  <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
+                    {comment.postId}
+                  </Table.Cell>
+                  <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
+                    {comment.userId}
+                  </Table.Cell>
+                  <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
                     <span
                       onClick={() => {
                         setShowModal(true);
@@ -119,7 +127,7 @@ export default function DashComments() {
           {showMore && (
             <Button
               onClick={handleShowMore}
-              className="w-full text-purple-100 self-center text-sm py-7"
+              className="w-full text-purple-100 self-center text-sm  "
             >
               Show more
             </Button>

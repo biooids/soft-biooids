@@ -73,15 +73,11 @@ function SignUp() {
             <span className="w-12 h-12 rounded-full overflow-hidden inline-block">
               <img src={logo} alt="" className="w-full h-full object-cover" />
             </span>
-            Soft-biooid
+            Soft-biooids
           </Link>
           <p className="text-lg mt-5">
-            Welcome to Soft-biooid! Sign up now to join our community and
-            explore projects and technologies used. Learn about cutting-edge web
-            design, and connect with like-minded individuals. Whether you're a
-            junior or senior developer, or simply curious about the future of my
-            projects, Soft-biooid is the place for you. Sign up today and embark
-            on a journey of discovery!
+            Welcome to Soft-biooids! Sign up now to join our community and
+            explore projects and technologies used.
           </p>
         </div>
         <div className="flex-1">
@@ -113,6 +109,9 @@ function SignUp() {
                 onChange={handleChange}
               />
             </div>
+            <Link to="/terms" className="underline">
+              I Agree Terms and Conditions
+            </Link>
             <Button
               gradientDuoTone="purpleToPink"
               type="submit"

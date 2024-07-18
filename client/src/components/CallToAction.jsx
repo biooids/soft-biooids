@@ -29,14 +29,14 @@ function CallToAction() {
           </a>
           <a
             target="_blank"
-            href="https://www.tiktok.com/@navi__biooid?is_from_webapp=1&sender_device=pc"
+            href="https://www.tiktok.com/@navi_biooids"
             className=" dark:hover:text-cyan-100"
           >
             <FaTiktok />
           </a>
           <a
             target="_blank"
-            href="https://www.instagram.com/soft_biooid_test"
+            href="https://www.instagram.com/soft_biooids/"
             className=" dark:hover:text-cyan-100"
           >
             <AiFillInstagram />

@@ -5,48 +5,60 @@
 body {
   height: 100vh;
 }
-.ql-editor {
-  font-size: 1.05rem;
-}
+
 .post-content {
   max-width: 100%;
-  word-wrap: break-word; /* or overflow-wrap: break-word; */
+  word-wrap: break-word;
 }
-
 .post-content p {
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
 }
-.post-content h1 {
-  font-size: 2rem;
-  font-weight: 600;
-  font-family: sans-serif;
-  color: rgb(255, 0, 255);
-  margin-bottom: 2rem;
-  text-align: center;
-  padding: 1rem 0;
 
-  border-bottom: 2px solid rgb(255, 0, 255);
+.post-content h1 {
+  font-size: 1.4rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  font-weight: 800;
 }
 .post-content h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-family: sans-serif;
-  color: #ffbf00;
-  margin-bottom: 2rem;
-  border-bottom: 2px dashed #ffbf00;
-  width: -moz-fit-content;
-  width: fit-content;
-
-  padding: 0.5rem 0;
+  font-size: 1.3rem;
+  padding-bottom: 0.5rem;
+  font-weight: 700;
 }
 .post-content h3 {
-  font-size: 1.17rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  font-family: sans-serif;
-
-  color: rgb(153, 255, 0);
+}
+.post-content ol {
+  list-style: lower-alpha;
+  line-height: 2rem;
+  padding: 1rem;
+}
+.post-content ul {
+  list-style: circle;
+  line-height: 2rem;
+  padding: 1rem;
+}
+.post-content a {
+  color: BLUE;
+  text-decoration: underline;
+}
+.post-content {
+  background-color: rgb(210, 255, 255);
+}
+.top-projects {
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+.all-articles {
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+.all-researches {
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
 
-.top-projects {
+.my-articles {
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+.my-researches {
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }

@@ -10,7 +10,7 @@ function FooterComp() {
   return (
     <Footer
       container
-      className="border border-t-8 border-teal-400 relative z-10 p-5"
+      className="border border-t-8 border-teal-400 relative z-10  pb-20"
     >
       <div className="w-full max-w-7xl mx-auto">
         <div className=" w-full justify-between sm:flex ">
@@ -65,14 +65,14 @@ function FooterComp() {
               />
               <Footer.LinkGroup col>
                 <Footer.Link
-                  href="http://tiktok.com/@navi_biooid?is_from_webapp=1&sender_device=pc"
+                  href="https://www.tiktok.com/@navi_biooids"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Tiktok
                 </Footer.Link>
                 <Footer.Link
-                  href="https://www.instagram.com/soft_biooid?igsh=aXp3bDJkMWpvM2t3"
+                  href="https://www.instagram.com/soft_biooids/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -90,17 +90,12 @@ function FooterComp() {
                   privacy policy
                 </Link>
                 <Link to="/terms" className="hover:underline">
-                  Terms & conditions
+                  Terms & cond
                 </Link>
               </Footer.LinkGroup>
             </div>
           </div>
         </div>
-
-        <div className="w-full sm:flex sm:items-center sm:justify-between">
-          <Footer.Copyright href="#" by="soft-biooids" year={2024} />
-        </div>
-        <div>version : 0.0.2</div>
         <div className="flex gap-6 sm:mt-6 mt-4 sm:justify-center items-center ">
           <p>Contact Me :</p>
           <a
@@ -118,20 +113,24 @@ function FooterComp() {
             <IoLogoWhatsapp />
           </a>
           <a
-            href="https://www.tiktok.com/@navi__biooid?is_from_webapp=1&sender_device=pc"
+            href="https://www.tiktok.com/@navi_biooids"
             className=" dark:hover:text-cyan-100"
             target="_blank"
           >
             <FaTiktok />
           </a>
           <a
-            href="https://www.instagram.com/soft_biooid_test"
+            href="https://www.instagram.com/soft_biooids/"
             className=" dark:hover:text-cyan-100"
             target="_blank"
           >
             <AiFillInstagram />
           </a>
         </div>
+        <div className="w-full sm:flex sm:items-center sm:justify-between mt-5">
+          <Footer.Copyright href="#" by="soft-biooids" year={2024} />
+        </div>
+        <div>version : 1.0.0</div>
       </div>
     </Footer>
   );

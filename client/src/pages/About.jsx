@@ -81,7 +81,6 @@ function About() {
                 <Avatar.Counter total={+9} href="#" />
               </Avatar.Group>
             </div>
-            <p>Not real people by the way 🙄 🙄 🤷‍♂️🤷‍♂️ </p>
             <p>
               Whether you're envisioning a sleek online store, a captivating
               blog to share your stories, or a professional showcase of your
@@ -108,14 +107,14 @@ function About() {
             <IoLogoWhatsapp />
           </a>
           <a
-            href="https://www.tiktok.com/@navi__biooid?is_from_webapp=1&sender_device=pc"
+            href="https://www.tiktok.com/@navi_biooids"
             className=" dark:hover:text-cyan-100"
             target="_blank"
           >
             <FaTiktok />
           </a>
           <a
-            href="https://www.instagram.com/soft_biooid_test"
+            href="https://www.instagram.com/soft_biooids/"
             className=" dark:hover:text-cyan-100"
             target="_blank"
           >

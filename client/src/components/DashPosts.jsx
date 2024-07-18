@@ -83,7 +83,7 @@ function DashPosts() {
           <Spinner size="xl" />
         </div>
       ) : currentUser.isAdmin && userPosts.length > 0 ? (
-        <div className="">
+        <>
           <Table hoverable className="shadow-md">
             <Table.Head>
               <Table.HeadCell>DATE Updated</Table.HeadCell>
@@ -96,11 +96,10 @@ function DashPosts() {
                 <span>Edit</span>
               </Table.HeadCell>
             </Table.Head>
-
             {userPosts.map((post) => (
               <Table.Body className="divide-y" key={post._id}>
-                <Table.Row>
-                  <Table.Cell className="w-1/6">
+                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                  <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
                     {new Date(post.updatedAt).toLocaleDateString()}
                   </Table.Cell>
                   <Table.Cell className="w-1/6">
@@ -112,10 +111,12 @@ function DashPosts() {
                       />
                     </Link>
                   </Table.Cell>
-                  <Table.Cell className="w-1/6">
+                  <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
                     <Link to={`/post/${post.slug}`}>{post.title}</Link>
                   </Table.Cell>
-                  <Table.Cell className="w-1/6">{post.category}</Table.Cell>
+                  <Table.Cell className=" max-w-xs overflow-hidden overflow-ellipsis break-words">
+                    {post.category}
+                  </Table.Cell>
                   <Table.Cell className="w-1/6">
                     <Button
                       onClick={() => {
@@ -140,12 +141,12 @@ function DashPosts() {
           {showMore && (
             <Button
               onClick={handleShowMore}
-              className="w-full text-purple-100 self-center text-sm py-7 "
+              className="w-full text-purple-100 self-center text-sm "
             >
               Show more
             </Button>
           )}
-        </div>
+        </>
       ) : (
         <p>There are no posts available. You have not created any posts yet.</p>
       )}

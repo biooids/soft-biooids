@@ -63,27 +63,28 @@ function PostPage() {
 
   return (
     <main className="p-3 flex flex-col max-w-6xl mx-auto min-h-screen">
-      <h1 className="text-3xl mt-10 p-3 text-center font-serif max-with-2xl mx-auto lg:text-4xl">
-        {post && post.title}
-      </h1>
+      <div className="w-[90%] mx-auto overflow-hidden">
+        <h1 className="text-xl mt-10 p-3 text-center font-serif w-full mx-auto md:text-2xl  lg:text-3xl break-words bg-black text-cyan-500 rounded-lg">
+          {post && post.title}
+        </h1>
+      </div>
       <Link
-        to={`/search?category=${post.category}&searchTerm=`}
+        to={`/search?category=${post.category}`}
         className="self-center mt-5 underline hover:dark:text-cyan-300"
       >
         <div>Category: {post && post.category} &#8594;</div>
       </Link>
-
       <img
         src={post && post.image}
         alt={post && post.title}
-        className="mt-5 p-3 max-h-[600px] w-full object-cover"
+        className="mt-5 p-3 max-h-[600px] w-full object-cover rounded-lg"
       />
       {post && post.externalLink && (
         <a
           href={post.externalLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-fit self-center text-purple-950 font-bold p-2 rounded-md mt-3 bg-cyan-300 hover:bg-cyan-500 transition-all duration-300"
+          className="w-fit self-center text-purple-950 p-2 rounded-md mt-3 bg-cyan-500 hover:bg-cyan-300 transition-all duration-300"
         >
           visit the site &#8594;
         </a>
@@ -94,7 +95,7 @@ function PostPage() {
       </div>
 
       <div
-        className="p-3 max-w-2xl mx-auto w-full post-content dark:text-cyan-300"
+        className="p-3 max-w-2xl mx-auto w-full rounded-lg post-content text-black"
         dangerouslySetInnerHTML={{ __html: post && post.content }}
       ></div>
       <CommentSection postId={post && post._id} />

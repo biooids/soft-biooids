@@ -25,7 +25,6 @@ function Header() {
   const { theme } = useSelector((state) => state.theme);
   const [urlSearchTerm, setUrlSearchTerm] = useState("");
   const [inputSearchTerm, setInputSearchTerm] = useState("");
-
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get("searchTerm");
@@ -76,7 +75,11 @@ function Header() {
         className="sm:text-xl text-sm self-center whitespace-nowrap font-semibold dark:text-cyan-100 flex items-center justify-center gap-1 sm:gap-3 "
       >
         <span className="w-12 h-12 rounded-full overflow-hidden  inline-block">
-          <img src={logo} alt="" className="w-full h-full object-cover" />
+          <img
+            src={logo}
+            alt="biooids logo"
+            className="w-full h-full object-cover"
+          />
         </span>
         Soft-biooid
       </Link>
@@ -135,9 +138,9 @@ function Header() {
             <DropdownDivider />
           </Dropdown>
         ) : (
-          <Link to="/sign-in">
+          <Link to="/sign-up">
             <Button gradientDuoTone="purpleToBlue" outline>
-              Sign In
+              Sign Up
             </Button>
           </Link>
         )}

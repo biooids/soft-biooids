@@ -126,7 +126,7 @@ function DashUsers() {
           {showMore && (
             <Button
               onClick={handleShowMore}
-              className="w-full text-purple-100 self-center text-sm py-7"
+              className="w-full text-purple-100 self-center text-sm "
             >
               Show more
             </Button>
