@@ -111,7 +111,7 @@ export default function UpdateUpdate() {
         externalLink,
       };
       const res = await fetch(
-        `/api/update/updateUpdate/${formData._id}/${currentUser._id}`,
+        `/api/update/updateUpdate/${updateId}/${currentUser._id}`,
         {
           method: "PUT",
           headers: {
