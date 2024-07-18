@@ -55,7 +55,7 @@ export const signin = async (req, res, next) => {
 
     const token = Jwt.sign(
       { id: validUser._id, isAdmin: validUser.isAdmin },
-      process.env.JWT_SECRET,
+      process.env.JWT_SECRETE,
       { expiresIn: "365d" }
     );
 
@@ -79,7 +79,7 @@ export const google = async (req, res, next) => {
     if (user) {
       const token = Jwt.sign(
         { id: user.id, isAdmin: user.isAdmin },
-        process.env.JWT_SECRET,
+        process.env.JWT_SECRETE,
         { expiresIn: "365d" }
       );
       const { password, ...rest } = user._doc;
@@ -107,7 +107,7 @@ export const google = async (req, res, next) => {
       await newUser.save();
       const token = Jwt.sign(
         { id: newUser._id, isAdmin: newUser.isAdmin },
-        process.env.JWT_SECRET,
+        process.env.JWT_SECRETE,
         { expiresIn: "365d" }
       );
       const { password, ...rest } = newUser._doc;
