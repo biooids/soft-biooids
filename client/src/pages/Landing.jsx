@@ -54,7 +54,7 @@ function Landing() {
           </p>
           <img src={gear} alt="" className="landing-image" />
         </div>
-        <div className="main-content text-center ">
+        <div className="main-content text-center text-cyan-300 ">
           <TypeAnimation
             className=""
             sequence={[
