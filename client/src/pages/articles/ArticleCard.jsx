@@ -16,7 +16,7 @@ function ArticleCard({ article, isMyArticle }) {
   const authorUsername = userId?.username || "anonymous";
 
   return (
-    <div className="group relative border-2 border-teal-500 h-[400px] overflow-hidden rounded-lg  transition-all">
+    <div className="group relative border-2 border-teal-500 h-[450px] overflow-hidden rounded-lg  transition-all">
       <Link to={`/articles/article/${article.slug}`}>
         <img
           src={article.image}

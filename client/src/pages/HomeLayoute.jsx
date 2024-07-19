@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 function HomeLayoute() {
   return (
     <div className="flex">
-      <nav className="w-0 md:w-[16%] md:p-3">
+      <nav className="w-0 md:w-[16%] md:p-3  border-r-2 border-slate-700">
         <HomeSidebar />
       </nav>
 

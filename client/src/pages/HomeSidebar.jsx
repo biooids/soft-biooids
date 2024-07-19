@@ -92,15 +92,7 @@ function HomeSidebar() {
           <FaHome className="text-xl" />
           <span className="text-xs">Home</span>
         </Link>
-        <Link
-          to="/search"
-          className={`flex flex-col justify-center items-center p-1 rounded-lg ${
-            location.pathname === "/search" ? "bg-purple-900" : ""
-          }`}
-        >
-          <GiStoneCrafting className="text-xl" />
-          <span className="text-xs">Projects</span>
-        </Link>
+
         <Link
           to="/articles"
           className={`flex flex-col justify-center items-center p-1 rounded-lg ${
@@ -108,7 +100,7 @@ function HomeSidebar() {
           }`}
         >
           <GiBrain className="text-xl" />
-          <span className="text-xs">Brain</span>
+          <span className="text-xs">Brains</span>
         </Link>
         <Link
           to="/researches"
@@ -118,6 +110,15 @@ function HomeSidebar() {
         >
           <GiFizzingFlask className="text-xl" />
           <span className="text-xs">Researches</span>
+        </Link>
+        <Link
+          to="/search"
+          className={`flex flex-col justify-center items-center p-1 rounded-lg ${
+            location.pathname === "/search" ? "bg-purple-900" : ""
+          }`}
+        >
+          <GiStoneCrafting className="text-xl" />
+          <span className="text-xs">Projects</span>
         </Link>
         <Link
           to="/updates"

@@ -35,6 +35,7 @@ export const create = async (req, res, next) => {
 };
 
 // Get posts with optional filters
+// Get posts with optional filters
 export const getposts = async (req, res, next) => {
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
@@ -61,7 +62,11 @@ export const getposts = async (req, res, next) => {
     const posts = await Post.find(filters)
       .sort({ updatedAt: sortDirection })
       .skip(startIndex)
-      .limit(limit);
+      .limit(limit)
+      .populate({
+        path: "userId",
+        select: "username profilePicture",
+      });
 
     const totalPost = await Post.countDocuments(filters);
     const now = new Date();

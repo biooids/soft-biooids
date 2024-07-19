@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaUsers } from "react-icons/fa";
 import { FaComments } from "react-icons/fa";
 import { MdDashboardCustomize } from "react-icons/md";
+import { FaHome } from "react-icons/fa";
 
 function DashSidebar() {
   const location = useLocation();
@@ -41,6 +42,11 @@ function DashSidebar() {
     <Sidebar className="w-full md:w-56">
       <Sidebar.Items>
         <Sidebar.ItemGroup>
+          <Link to="/home">
+            <Sidebar.Item icon={FaHome} labelColor="dark" as="div">
+              Home
+            </Sidebar.Item>
+          </Link>
           {currentUser && currentUser.isAdmin && (
             <Link to="/dashboard?tab=dash">
               <Sidebar.Item

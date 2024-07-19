@@ -32,62 +32,36 @@ import {
 import { TbBrandThreejs } from "react-icons/tb";
 import { TiCloudStorage } from "react-icons/ti";
 
-import { GiBrain, GiFizzingFlask, GiStoneCrafting } from "react-icons/gi";
-
 import HomeSidebar from "./HomeSidebar";
-import { Carousel } from "flowbite-react";
 
 export default function Home() {
-  const [latestArticles, setLatestArticles] = useState([]);
-  const [latestPosts, setLatestPosts] = useState([]);
-  const [latestResearches, setLatestResearches] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchPosts = async () => {
       try {
-        const [postsRes, articlesRes, researchesRes] = await Promise.all([
-          fetch("/api/post/getPosts"),
-          fetch("/api/article/getArticles"),
-          fetch("/api/research/getResearches"),
-        ]);
-
-        const postsData = await postsRes.json();
-        const articlesData = await articlesRes.json();
-        const researchesData = await researchesRes.json();
-
-        // Ensure type is set for each fetched data
-        const formattedPosts = postsData.posts
-          .slice(0, 6)
-          .map((post) => ({ ...post, type: "post" }));
-        const formattedArticles = articlesData.articles
-          .slice(0, 6)
-          .map((article) => ({ ...article, type: "article" }));
-        const formattedResearches = researchesData.researches
-          .slice(0, 6)
-          .map((research) => ({ ...research, type: "research" }));
-
-        setLatestPosts(formattedPosts);
-        setLatestArticles(formattedArticles);
-        setLatestResearches(formattedResearches);
-
+        const res = await fetch("/api/post/getPosts");
+        const data = await res.json();
+        setPosts(data.posts);
         setLoading(false);
       } catch (error) {
         setLoading(false);
       }
     };
-
-    fetchData();
+    fetchPosts();
   }, []);
+
+  const mainPosts = posts.filter((post) => post.mainPost);
 
   return (
     <div>
-      <div className="flex">
-        <nav className="w-0 md:w-[16%] md:p-3 border-r-2 border-slate-700">
+      <div className="flex ">
+        <nav className="w-0 md:w-[16%] md:p-3 ">
           <HomeSidebar />
         </nav>
-        <div className="flex flex-col gap-6 px-3 w-full md:w-[84%] mx-auto mb-10">
-          <div className="md:h-[70vh] md:grid md:grid-cols-2 flex flex-col">
+        <div className="flex flex-col gap-6  px-3 w-full md:w-[84%] mx-auto mb-10">
+          <div className="md:h-[70vh] md:grid md:grid-cols-2 flex flex-col ">
             <div className="flex flex-col justify-center gap-3 bg-slate-950 bg-opacity-20 p-5">
               <h1 className="font-bold sm:text-2xl lg:text-3xl">
                 Welcome to soft-biooids
@@ -114,6 +88,13 @@ export default function Home() {
               >
                 Click here to Explore &#8594;
               </Link>
+              {/* <a
+              href=""
+              className="text-sm sm:text-lg flex justify-center items-center w-fit gap-1 dark:text-cyan-100 font-bold  hover:dark:text-cyan-300 underline"
+            >
+              <FaCirclePlay />
+              How it works &#8594;
+            </a> */}
             </div>
             <div className="top-0 h-full relative">
               <img
@@ -157,7 +138,7 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="dark:text-purple-500 text-xs sm:text-sm border-b-8 p-5 gap-5 flex flex-col border-t-8 border-cyan-400 rounded-xl sm:w-[60%]">
+            <div className="dark:text-purple-700 text-xs sm:text-sm border-b-8 p-5 gap-5 flex flex-col border-t-8 border-cyan-400 rounded-xl sm:w-[60%]">
               <h3 className="font-semibold text-center">Tech Stack</h3>
               <div className="flex justify-between flex-wrap gap-4">
                 <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
@@ -201,8 +182,8 @@ export default function Home() {
                   <span className="text-orange-500">Git</span>
                 </div>
                 <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <FaGithub className="text-slate-950 " />
-                  <span className="text-slate-950 ">GitHub</span>
+                  <FaGithub className="text-black" />
+                  <span className="text-black">GitHub</span>
                 </div>
               </div>
               <div className="flex justify-between flex-wrap gap-4">
@@ -231,8 +212,8 @@ export default function Home() {
                     <span className="text-blue-500">TypeScript</span>
                   </div>
                   <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <TbBrandThreejs className="text-slate-950 " />
-                    <span className="text-slate-950 ">Three.js</span>
+                    <TbBrandThreejs className="text-black" />
+                    <span className="text-black">Three.js</span>
                   </div>
                   <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
                     <TiCloudStorage className="text-blue-500" />
@@ -241,124 +222,126 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <p className="sm:w-[20%]">
-              I am a free lancer looking for a powerful team
-            </p>
-          </div>
-          <div className=" dark:text-purple-500 dark:bg-slate-950  bg-slate-300 h-fit  border-l-4 p-3 border-cyan-500 rounded-xl">
-            <h4 className="text-lg font-semibold pb-5">Services</h4>
-            <ul className="list-disc list-inside">
-              <li>Web Development</li>
-              <li>RESTful APIs</li>
-              <li>3D Websites</li>
-              <li>Responsive Design</li>
-              <li>Tech Advices</li>
-              <li>I Upload some lessons</li>
-            </ul>
-          </div>
-          <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 lg:text-4xl md:text-2xl">
-            <Carousel pauseOnHover>
-              <div className="font-bold flex flex-col h-full items-center justify-center bg-slate-300 dark:bg-slate-950  p-4">
-                <GiBrain className="text-cyan-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl" />
-                <p className="text-purple-500 text-base sm:text-lg md:text-xl lg:text-2xl mt-4 text-center">
-                  Share the knowledge with the world
-                </p>
-              </div>
-              <div className="font-bold flex flex-col h-full items-center justify-center bg-slate-300 dark:bg-slate-950  p-4">
-                <GiStoneCrafting className="text-cyan-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl" />
-                <p className="text-purple-500 text-base sm:text-lg md:text-xl lg:text-2xl mt-4 text-center">
-                  I Upload a collection of cool projects
-                </p>
-              </div>
-              <div className="font-bold flex flex-col h-full items-center justify-center bg-slate-300 dark:bg-slate-950  p-4">
-                <GiFizzingFlask className="text-cyan-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl" />
-                <p className="text-purple-500 text-base sm:text-lg md:text-xl lg:text-2xl mt-4 text-center">
-                  Share your latest research with the world
-                </p>
-              </div>
-            </Carousel>
-          </div>
-          <div className="bg-slate-950 rounded-xl">
-            <div className="p-3 flex flex-col gap-2">
-              <h2 className="text-2xl font-semibold text-cyan-500">
-                Latest Articles:
-              </h2>
-              <span className="text-xs text-purple-300">
-                you can upload yours too 🤷‍♂️!
+            <div className="sm:w-[20%]">
+              I am a freelancer. You can{" "}
+              <span className="text-nowrap text-purple-500 underline">
+                Hire me
               </span>
-              <Link
-                to="/articles"
-                className="text-cyan-500 bg-slate-600 hover:bg-slate-700 p-2 rounded-lg flex justify-center items-center"
-              >
-                See more
-              </Link>
-            </div>
-            <div className="home-container gap-3 flex flex-col p-3 sm:grid">
-              {loading
-                ? Array.from({ length: 6 }).map((_, index) => (
-                    <PostCardSkeleton key={index} />
-                  ))
-                : latestArticles.map((article, index) => (
-                    <PostCard key={index} post={article} />
-                  ))}
             </div>
           </div>
-
-          <div className="bg-slate-950 rounded-xl">
-            <div className="p-3 flex flex-col gap-2">
-              <h2 className="text-2xl font-semibold text-cyan-500">
-                Latest Projects:
-              </h2>
-              <span className="text-xs text-purple-300">
-                they are mine 🙄!?
-              </span>
-              <Link
-                to="/posts"
-                className="text-cyan-500 bg-slate-600 hover:bg-slate-700 p-2 rounded-lg flex justify-center items-center"
-              >
-                See more
-              </Link>
-            </div>
-            <div className="home-container gap-3 flex flex-col p-3 sm:grid">
-              {loading
-                ? Array.from({ length: 6 }).map((_, index) => (
-                    <PostCardSkeleton key={index} />
-                  ))
-                : latestPosts.map((post, index) => (
-                    <PostCard key={index} post={post} />
-                  ))}
-            </div>
-          </div>
-
-          <div className="bg-slate-950 rounded-xl">
-            <div className="p-3 flex flex-col gap-2">
-              <h2 className="text-2xl font-semibold text-cyan-500">
-                Latest Researches:
-              </h2>
-              <span className="text-xs text-purple-300">
-                you can upload yours too 🤷‍♂️!
-              </span>
-              <Link
-                to="/researches"
-                className="text-cyan-500 bg-slate-600 hover:bg-slate-700 p-2 rounded-lg flex justify-center items-center"
-              >
-                See more
-              </Link>
-            </div>
-            <div className="home-container gap-3 flex flex-col p-3 sm:grid">
-              {loading
-                ? Array.from({ length: 6 }).map((_, index) => (
-                    <PostCardSkeleton key={index} />
-                  ))
-                : latestResearches.map((research, index) => (
-                    <PostCard key={index} post={research} />
-                  ))}
-            </div>
-          </div>
-
-          <CallToAction />
+          <Link
+            to="/search"
+            className="text-sm sm:text-lg dark:text-cyan-100 font-bold m-auto hover:dark:text-cyan-300 underline w-fit"
+          >
+            Search projects &#8594;
+          </Link>
         </div>
       </div>
+
+      <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7 border-t-2 border-cyan-500">
+        <h2 className="text-2xl text-center sm:text-start font-semibold dark:text-cyan-500">
+          My Top Projects
+        </h2>
+        <div className="flex flex-wrap justify-center items-center md:grid top-projects gap-4">
+          {loading ? (
+            Array.from({ length: 3 }).map((_, index) => (
+              <PostCardSkeleton key={index} />
+            ))
+          ) : mainPosts.length > 0 ? (
+            mainPosts.map((post) => <PostCard key={post._id} post={post} />)
+          ) : (
+            <div className="text-center text-xl font-semibold text-red-600">
+              No main posts available.
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7">
+        {loading ? (
+          <div className="flex flex-wrap justify-center items-center md:grid top-projects gap-4">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <PostCardSkeleton key={index} />
+            ))}
+          </div>
+        ) : posts && posts.length > 0 ? (
+          <div className="flex flex-col gap-6">
+            <h2 className="text-2xl font-semibold text-center sm:text-start dark:text-cyan-500">
+              Recent Posts
+            </h2>
+            <div className="flex flex-wrap justify-center items-center md:grid top-projects gap-4">
+              {posts.map((post) => (
+                <PostCard key={post._id} post={post} />
+              ))}
+            </div>
+            <Link
+              to={"/search"}
+              className="text-sm sm:text-lg dark:text-cyan-100 font-bold hover:dark:text-cyan-300 underline w-fit m-auto"
+            >
+              View all posts &#8594;
+            </Link>
+          </div>
+        ) : (
+          <div className="text-center text-xl font-semibold text-red-600">
+            There is no post yet ...
+          </div>
+        )}
+      </div>
+      <div className="p-3 bg-cyan-100 dark:bg-cyan-950">
+        <CallToAction />
+      </div>
+
+      {/* 
+      import React from "react";
+import { Link } from "react-router-dom";
+import moment from "moment";
+import PostCardSkeleton from "./PostCardSkeleton";
+
+export default function PostCard({ post }) {
+  if (!post) {
+    return <PostCardSkeleton />;
+  }
+
+  const { title, content, slug, userId, createdAt } = post;
+  const postCreatedAt = createdAt || new Date().toISOString();
+
+  // Default values for avatar and username if userId is missing
+  const authorProfilePicture = userId?.profilePicture || "default-avatar-url";
+  const authorUsername = userId?.username || "anonymous";
+
+  return (
+    <div className="group relative border-2 border-teal-500 h-[450px] overflow-hidden rounded-lg w-[430px] sm:w-full transition-all">
+      <Link to={`/post/${slug}`}>
+        <img
+          src={post.image}
+          alt="post cover"
+          className="h-[240px] w-full object-cover group-hover:h-[150px] transition-all duration-300 z-20"
+        />
+      </Link>
+      <div className="p-3 flex flex-col">
+        <div className="flex items-center">
+          <img
+            src={authorProfilePicture}
+            alt={authorUsername}
+            className="w-8 h-8 rounded-full mr-2"
+          />
+          <span className="text-sm">@{authorUsername}</span>
+          <span className="mx-2">•</span>
+          <span className="text-sm">{moment(postCreatedAt).fromNow()}</span>
+        </div>
+        <p className="text-lg font-semibold line-clamp-2">{title}</p>
+        <span className="italic text-sm">{post.category}</span>
+        <Link
+          to={`/post/${slug}`}
+          className="z-10 bottom-0 absolute left-0 right-0 border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white transition-all duration-300 text-center py-2 rounded-md !rounded-tl-none m-2"
+        >
+          Read article
+        </Link>
+      </div>
+    </div>
+  );
+}
+ */}
     </div>
   );
 }

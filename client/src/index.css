@@ -62,3 +62,7 @@ body {
 .my-researches {
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
+
+.home-container {
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
