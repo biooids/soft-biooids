@@ -1,19 +1,21 @@
 {
-  "name": "icon",
-  "short_name": "icon",
+  "name": "Soft-Biooids",
+  "short_name": "Biooids",
+  "description": "Explore and contribute to Articles, Projects, and Researches with technologies like MERN stack, HTML, CSS, JavaScript, and more.",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
+      "src": "./icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/android-chrome-512x512.png",
+      "src": "./icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
+  "start_url": ".",
+  "display": "standalone",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "theme_color": "#000000"
 }

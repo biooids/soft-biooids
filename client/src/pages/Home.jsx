@@ -42,6 +42,7 @@ export default function Home() {
   const [latestPosts, setLatestPosts] = useState([]);
   const [latestResearches, setLatestResearches] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [mainPosts, setMainPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,9 +68,13 @@ export default function Home() {
           .slice(0, 6)
           .map((research) => ({ ...research, type: "research" }));
 
+        // Filter main posts
+        const mainPosts = postsData.posts.filter((post) => post.mainPost);
+
         setLatestPosts(formattedPosts);
         setLatestArticles(formattedArticles);
         setLatestResearches(formattedResearches);
+        setMainPosts(mainPosts);
 
         setLoading(false);
       } catch (error) {
@@ -307,13 +312,43 @@ export default function Home() {
           <div className="bg-slate-950 rounded-xl">
             <div className="p-3 flex flex-col gap-2">
               <h2 className="text-2xl font-semibold text-cyan-500">
-                Latest Projects:
+                My Top Projects
               </h2>
               <span className="text-xs text-purple-300">
                 they are mine 🙄!?
               </span>
               <Link
-                to="/posts"
+                to="/search"
+                className="text-cyan-500 bg-slate-600 hover:bg-slate-700 p-2 rounded-lg flex justify-center items-center"
+              >
+                See more
+              </Link>
+            </div>
+            <div className="home-container gap-3 flex flex-col p-3 sm:grid">
+              {loading ? (
+                Array.from({ length: 6 }).map((_, index) => (
+                  <PostCardSkeleton key={index} />
+                ))
+              ) : mainPosts.length > 0 ? (
+                mainPosts
+                  .slice(0, 6)
+                  .map((post) => <PostCard key={post._id} post={post} />)
+              ) : (
+                <div className="text-xl font-semibold text-red-600">
+                  No main posts available.
+                </div>
+              )}
+            </div>
+
+            <div className="p-3 flex flex-col gap-2">
+              <h2 className="text-2xl font-semibold text-cyan-500">
+                Latest Projects & proposal:
+              </h2>
+              <span className="text-xs text-purple-300">
+                they are mine 🙄!?
+              </span>
+              <Link
+                to="/search"
                 className="text-cyan-500 bg-slate-600 hover:bg-slate-700 p-2 rounded-lg flex justify-center items-center"
               >
                 See more

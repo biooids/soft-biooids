@@ -43,6 +43,7 @@ function PostPage() {
       try {
         const res = await fetch(`/api/post/getposts?limit=3`);
         const data = await res.json();
+        console.log(data);
         if (res.ok) {
           setRecentPosts(data.posts);
         }
@@ -69,9 +70,25 @@ function PostPage() {
       </nav>
       <section className="p-3 flex flex-col w-full md:w-[84%] mx-auto min-h-screen">
         <div className="w-[90%] mx-auto overflow-hidden">
-          <h1 className="text-xl mt-10 p-3 text-center font-serif w-full mx-auto md:text-2xl  lg:text-3xl break-words bg-black text-cyan-500 rounded-lg">
-            {post && post.title}
-          </h1>
+          {post && post.mainPost ? (
+            <div className="flex gap-3 flex-col">
+              <p className="text-xl mt-10 p-3 text-center font-serif w-full mx-auto md:text-2xl lg:text-3xl break-words bg-black text-cyan-500 rounded-lg">
+                This is a Proposal contact me if you want it
+              </p>
+              <Link
+                to="/about"
+                className="underline p-2 bg-slate-700 text-cyan-500 w-fit rounded-lg hover:bg-slate-600"
+              >
+                Contact me
+              </Link>
+            </div>
+          ) : (
+            ""
+          )}
+
+          <h3 className="text-xl mt-10 p-3 text-center font-serif w-full mx-auto md:text-2xl  lg:text-3xl break-words bg-black text-cyan-500 rounded-lg">
+            Title: {post && post.title}
+          </h3>
         </div>
         <Link
           to={`/search?category=${post.category}`}

@@ -14,6 +14,37 @@ function About() {
           <h1 className="text-3xl font-semibold text-center my-7">
             About my blog
           </h1>
+          <div className="flex gap-6 sm:mb-6 mb-4  items-center ">
+            <p>Click to Contact Me :</p>
+            <a
+              href="mailto:ehwapyongm@gmail.com"
+              className=" dark:hover:text-cyan-100"
+              target="_blank"
+            >
+              <MdEmail />
+            </a>
+            <a
+              href="https://wa.me/+250790931024?text=Hello,%20I'm%20interested%20in%20your%20work"
+              className=" dark:hover:text-cyan-100"
+              target="_blank"
+            >
+              <IoLogoWhatsapp />
+            </a>
+            <a
+              href="https://www.tiktok.com/@navi_biooids"
+              className=" dark:hover:text-cyan-100"
+              target="_blank"
+            >
+              <FaTiktok />
+            </a>
+            <a
+              href="https://www.instagram.com/soft_biooids/"
+              className=" dark:hover:text-cyan-100"
+              target="_blank"
+            >
+              <AiFillInstagram />
+            </a>
+          </div>
           <div className="text-md dark:text-cyan-500 flex flex-col gap-6">
             <p>
               I'm Edouard, a freelance software engineer with a passion for
@@ -89,37 +120,6 @@ function About() {
               footprint together.
             </p>
           </div>
-        </div>
-        <div className="flex gap-6 sm:mt-6 mt-4 sm:justify-center items-center ">
-          <p>Contact Me :</p>
-          <a
-            href="mailto:ehwapyongm@gmail.com"
-            className=" dark:hover:text-cyan-100"
-            target="_blank"
-          >
-            <MdEmail />
-          </a>
-          <a
-            href="https://wa.me/+250790931024?text=Hello,%20I'm%20interested%20in%20your%20work"
-            className=" dark:hover:text-cyan-100"
-            target="_blank"
-          >
-            <IoLogoWhatsapp />
-          </a>
-          <a
-            href="https://www.tiktok.com/@navi_biooids"
-            className=" dark:hover:text-cyan-100"
-            target="_blank"
-          >
-            <FaTiktok />
-          </a>
-          <a
-            href="https://www.instagram.com/soft_biooids/"
-            className=" dark:hover:text-cyan-100"
-            target="_blank"
-          >
-            <AiFillInstagram />
-          </a>
         </div>
       </div>
     </div>

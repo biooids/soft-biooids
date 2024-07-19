@@ -3,7 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#000000" />
 
+    <!-- SEO Improvements -->
+    <title>
+      Soft-Biooids: Explore and Contribute to, Articles, Projects and Researches
+    </title>
+    <meta
+      name="description"
+      content="Welcome to Soft-Biooids, a platform for contributing and exploring Articles, projects, and research from people around the world, built with technologies like MERN stack, HTML, CSS, JavaScript, and more."
+    />
+    <meta
+      name="keywords"
+      content="Articles, Projects, Researches, Full stack development, MERN stack, HTML, CSS, JavaScript, 3D websites, projects, articles, research"
+    />
+    <meta name="author" content="Soft-Biooids" />
+    <link rel="canonical" href="https://www.biooids.com" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta
+      property="og:title"
+      content="Soft-Biooids: Explore and Contribute to, Articles, Full stack Projects and Researches"
+    />
+    <meta
+      property="og:description"
+      content="Explore and Contribute to Articles, projects, and research from people around the world by uploading and sharing links, projects are built with technologies like MERN stack, HTML, CSS, JavaScript, and more."
+    />
+    <meta property="og:image" content="/src/assets/xi-biooid.jpg" />
+    <meta property="og:url" content="https://www.biooids.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon and Icons -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -22,15 +54,45 @@
       href="./src/assets/favicon-16x16.png"
     />
     <link rel="manifest" href="./src/assets/site.webmanifest" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="apple-touch-startup-image" href="./src/assets/startup.png" />
+
+    <!-- Preconnect and Fonts -->
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin="true"
+    />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <title>soft-biooids</title>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Soft-Biooids",
+        "url": "https://www.biooids.com",
+        "logo": "/src/assets/xi-biooid.jpg",
+        "sameAs": [
+          "https://www.instagram.com/soft_biooids/",
+          "https://github.com/biooids"
+        ]
+      }
+    </script>
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/main.jsx" as="script" />
   </head>
   <body>
+    <noscript>
+      <p>
+        JavaScript is required for this site to function correctly. Please
+        enable JavaScript in your browser settings.
+      </p>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

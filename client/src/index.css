@@ -46,9 +46,9 @@ body {
 .post-content {
   background-color: rgb(210, 255, 255);
 }
-.top-projects {
+/* .top-projects {
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-}
+} */
 .all-articles {
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
