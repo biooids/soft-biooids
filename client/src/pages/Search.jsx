@@ -162,7 +162,7 @@ export default function Search() {
             Project results:
           </h1>
         </div>
-        <div className="flex flex-wrap justify-center items-center md:grid top-projects gap-4">
+        <div className="flex flex-wrap justify-center items-center sm:grid top-projects gap-4 bg-red-300">
           {loading &&
             Array.from({ length: 9 }).map((_, index) => (
               <PostCardSkeleton key={index} />
