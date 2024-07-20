@@ -21,6 +21,9 @@ import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import { helix } from "ldrs";
+helix.register();
+
 export default function UpdateUpdate() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -30,6 +33,8 @@ export default function UpdateUpdate() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isQuillDisabled, setIsQuillDisabled] = useState(false);
   const [externalLink, setExternalLink] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
   const navigate = useNavigate();
   const { updateId } = useParams();
   const { currentUser } = useSelector((state) => state.user);
@@ -55,7 +60,9 @@ export default function UpdateUpdate() {
         setExternalLink(update.externalLink || "");
       } catch (error) {
         console.log(error.message);
-        setPublishError("Failed to fetch update data");
+        setPublishError(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchUpdate();
@@ -135,6 +142,14 @@ export default function UpdateUpdate() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <l-helix size="100" speed="2.5" color="rgb(0, 255, 255)"></l-helix>
+      </div>
+    );
+  }
+
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">Update Update</h1>
@@ -145,7 +160,6 @@ export default function UpdateUpdate() {
             placeholder="Title"
             required
             id="title"
-            className="flex-1"
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }

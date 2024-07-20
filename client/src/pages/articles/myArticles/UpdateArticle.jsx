@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Alert,
-  Button,
-  FileInput,
-  Select,
-  TextInput,
-  Spinner,
-} from "flowbite-react";
+import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import {
@@ -20,6 +13,9 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { helix } from "ldrs";
+
+helix.register();
 
 export default function UpdateArticle() {
   const [file, setFile] = useState(null);
@@ -30,6 +26,7 @@ export default function UpdateArticle() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isQuillDisabled, setIsQuillDisabled] = useState(false);
   const [externalLink, setExternalLink] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { articleId } = useParams();
   const { currentUser } = useSelector((state) => state.user);
@@ -49,10 +46,12 @@ export default function UpdateArticle() {
         setPublishError(null);
         const article = data.articles[0];
         setFormData(article);
-
         setExternalLink(article.externalLink || "");
       } catch (error) {
         console.log(error.message);
+        setPublishError(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchArticle();
@@ -132,12 +131,20 @@ export default function UpdateArticle() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <l-helix size="100" speed="2.5" color="rgb(0, 255, 255)"></l-helix>
+      </div>
+    );
+  }
+
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">
         Update Article
       </h1>
-      <form className="flex flex-col gap-4 " onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
             type="text"
@@ -237,7 +244,6 @@ export default function UpdateArticle() {
           id="externalLink"
           value={externalLink}
           onChange={(e) => setExternalLink(e.target.value)}
-          className="flex-1"
         />
         <Button
           className="text-cyan-100"

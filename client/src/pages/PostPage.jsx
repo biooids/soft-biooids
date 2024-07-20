@@ -70,7 +70,7 @@ function PostPage() {
       </nav>
       <section className="p-3 flex flex-col w-full md:w-[84%] mx-auto min-h-screen">
         <div className="w-[90%] mx-auto overflow-hidden">
-          {post && post.mainPost ? (
+          {post && !post.mainPost ? (
             <div className="flex gap-3 flex-col">
               <p className="text-xl mt-10 p-3 text-center font-serif w-full mx-auto md:text-2xl lg:text-3xl break-words bg-black text-cyan-500 rounded-lg">
                 This is a Proposal contact me if you want it

@@ -21,6 +21,10 @@ import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import { helix } from "ldrs";
+
+helix.register();
+
 export default function UpdateResearch() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -30,6 +34,7 @@ export default function UpdateResearch() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isQuillDisabled, setIsQuillDisabled] = useState(false);
   const [externalLink, setExternalLink] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { researchId } = useParams();
   const { currentUser } = useSelector((state) => state.user);
@@ -49,10 +54,12 @@ export default function UpdateResearch() {
         setPublishError(null);
         const research = data.researches[0];
         setFormData(research);
-
         setExternalLink(research.externalLink || "");
       } catch (error) {
         console.log(error.message);
+        setPublishError(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchResearch();
@@ -132,19 +139,26 @@ export default function UpdateResearch() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <l-helix size="100" speed="2.5" color="rgb(0, 255, 255)"></l-helix>
+      </div>
+    );
+  }
+
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">
         Update Research
       </h1>
-      <form className="flex flex-col gap-4 " onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
             type="text"
             placeholder="Title"
             required
             id="title"
-            className="flex-1"
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
@@ -237,7 +251,6 @@ export default function UpdateResearch() {
           id="externalLink"
           value={externalLink}
           onChange={(e) => setExternalLink(e.target.value)}
-          className="flex-1"
         />
         <Button
           className="text-cyan-100"
