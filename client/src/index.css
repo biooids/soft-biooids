@@ -38,7 +38,7 @@ body {
 .post-content ul {
   list-style: circle;
   line-height: 2rem;
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 .post-content a {
   color: BLUE;
