@@ -163,6 +163,7 @@ export default function UpdateResearch() {
               setFormData({ ...formData, title: e.target.value })
             }
             value={formData.title || ""}
+            className="flex-1"
           />
           <Select
             onChange={(e) =>
