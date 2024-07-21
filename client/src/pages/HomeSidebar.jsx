@@ -118,7 +118,7 @@ function HomeSidebar() {
           }`}
         >
           <GiStoneCrafting className="text-xl" />
-          <span className="text-xs">Projects</span>
+          <span className="text-xs">biooids</span>
         </Link>
         <Link
           to="/updates"
