@@ -97,12 +97,14 @@ export default function Home() {
               <h1 className="font-bold sm:text-2xl lg:text-3xl">
                 Welcome to soft-biooids
               </h1>
-              <p className="dark:text-cyan-400 text-xs sm:text-sm">
-                Here you'll find a variety of articles about my projects. I'm
-                building some cool stuff along the way like full stack apps with
-                MERN stack, HTML, CSS, JAVASCRIPT, even 3D websites using 3JS
-                and more.
-              </p>
+              <h2 className="dark:text-cyan-400 text-xs sm:text-sm">
+                Discover and contribute to a world by sharing your articles,
+                projects, and share your research to the world at Soft-Biooids.
+                Engage with a platform that allows you to share and explore
+                content on various topics you want. Connect with a community of
+                like-minded individuals passionate about knowledge and
+                innovation.
+              </h2>
               <p className="dark:text-purple-500 flex gap-3">
                 I am a full stack developer:{" "}
                 <a
@@ -314,9 +316,7 @@ export default function Home() {
               <h2 className="text-2xl font-semibold text-cyan-500">
                 My Top Projects
               </h2>
-              <span className="text-xs text-purple-300">
-                they are mine 🙄!?
-              </span>
+              <span className="text-xs text-purple-300">biooids projects</span>
               <Link
                 to="/search"
                 className="text-cyan-500 bg-slate-600 hover:bg-slate-700 p-2 rounded-lg flex justify-center items-center"
@@ -344,9 +344,7 @@ export default function Home() {
               <h2 className="text-2xl font-semibold text-cyan-500">
                 Latest Projects & proposal:
               </h2>
-              <span className="text-xs text-purple-300">
-                they are mine 🙄!?
-              </span>
+              <span className="text-xs text-purple-300">biooids projects</span>
               <Link
                 to="/search"
                 className="text-cyan-500 bg-slate-600 hover:bg-slate-700 p-2 rounded-lg flex justify-center items-center"
