@@ -22,6 +22,9 @@ import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import { helix } from "ldrs";
+helix.register();
+
 export default function UpdatePost() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -35,6 +38,7 @@ export default function UpdatePost() {
   const { postId } = useParams();
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -54,6 +58,9 @@ export default function UpdatePost() {
         setIsMainPost(post.mainPost || false);
       } catch (error) {
         console.log(error.message);
+        setPublishError(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchPost();
@@ -132,6 +139,14 @@ export default function UpdatePost() {
       setIsSubmitting(false);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <l-helix size="100" speed="2.5" color="rgb(0, 255, 255)"></l-helix>
+      </div>
+    );
+  }
 
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">

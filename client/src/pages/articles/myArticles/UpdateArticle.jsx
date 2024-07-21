@@ -20,8 +20,8 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { helix } from "ldrs";
 
+import { helix } from "ldrs";
 helix.register();
 
 export default function UpdateArticle() {
