@@ -21,7 +21,13 @@ import {
   SiMongoose,
   SiNextdotjs,
   SiTypescript,
+  SiReactrouter,
+  SiSolidity,
+  SiSvelte,
+  SiWebrtc,
+  SiSocketdotio,
 } from "react-icons/si";
+
 import {
   FaReact,
   FaHtml5,
@@ -31,11 +37,17 @@ import {
 } from "react-icons/fa";
 import { TbBrandThreejs } from "react-icons/tb";
 import { TiCloudStorage } from "react-icons/ti";
+import { FaComputer } from "react-icons/fa6";
 
-import { GiBrain, GiFizzingFlask, GiStoneCrafting } from "react-icons/gi";
+import {
+  GiBrain,
+  GiFizzingFlask,
+  GiStoneCrafting,
+  GiCoffeeCup,
+} from "react-icons/gi";
 
 import HomeSidebar from "./HomeSidebar";
-import { Carousel } from "flowbite-react";
+import { Button, Carousel } from "flowbite-react";
 
 export default function Home() {
   const [latestArticles, setLatestArticles] = useState([]);
@@ -87,7 +99,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="flex">
+      <div className="flex  dark:bg-gradient-to-l dark:from-slate-800 dark:to-slate-950">
         <nav className="w-0 md:w-[16%] md:p-3 border-r-2 border-slate-700">
           <HomeSidebar />
         </nav>
@@ -130,9 +142,158 @@ export default function Home() {
               />
             </div>
           </div>
+          <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 lg:text-4xl md:text-2xl">
+            <Carousel pauseOnHover slideInterval={1000}>
+              <div className="font-bold flex flex-col h-full items-center justify-center bg-gradient-to-br from-slate-500 to-slate-900 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-950 p-4 rounded-lg shadow-lg">
+                <GiBrain className="text-cyan-500 text-5xl md:text-6xl lg:text-7xl animate-bounce" />
+                <p className="text-purple-400 text-sm md:text-xl lg:text-2xl mt-4 text-center">
+                  Empower the world with knowledge. Let's create, innovate, and
+                  share.
+                </p>
+                <a
+                  href="#portfolio"
+                  className="mt-2 text-teal-400 hover:text-teal-300 text-sm md:text-base"
+                >
+                  Explore my work
+                </a>
+              </div>
+              <div className="font-bold flex flex-col h-full items-center justify-center bg-gradient-to-br from-slate-500 to-slate-900 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-950 p-4 rounded-lg shadow-lg">
+                <GiStoneCrafting className="text-cyan-500 text-5xl md:text-6xl lg:text-7xl animate-pulse" />
+                <p className="text-purple-400 text-sm md:text-xl lg:text-2xl mt-4 text-center">
+                  Crafting cool projects that make an impact.
+                </p>
+                <a
+                  href="#projects"
+                  className="mt-2 text-teal-400 hover:text-teal-300 text-sm md:text-base"
+                >
+                  Check out my creations
+                </a>
+              </div>
+              <div className="font-bold flex flex-col h-full items-center justify-center bg-gradient-to-br from-slate-500 to-slate-900 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-950 p-4 rounded-lg shadow-lg">
+                <GiFizzingFlask className="text-cyan-500 text-5xl md:text-6xl lg:text-7xl animate-ping" />
+                <p className="text-purple-400 text-sm md:text-xl lg:text-2xl mt-4 text-center">
+                  Discover innovative research that sparks change.
+                </p>
+                <a
+                  href="#research"
+                  className="mt-2 text-teal-400 hover:text-teal-300 text-sm md:text-base"
+                >
+                  See my latest studies
+                </a>
+              </div>
+            </Carousel>
+          </div>
+          <div className=" flex flex-col sm:grid grid-cols-3 grid-rows-3 gap-4 ">
+            <div className="col-span-2 row-span-2 dark:bg-slate-900  bg-slate-300  overflow-hidden border-b-8 border-t-8 border-cyan-400 rounded-xl ">
+              <div className="dark:text-purple-500 text-xs p-5 gap-5 flex flex-col  ">
+                <h3 className="font-semibold text-center">Tech Stack</h3>
+                <div className="flex justify-between flex-wrap gap-4">
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <SiMongodb className="text-green-500" />
+                    <span className="text-green-500">MongoDB</span>
+                  </div>
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <SiExpress className="text-gray-500" />
+                    <span className="text-gray-500">Express</span>
+                  </div>
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <FaReact className="text-blue-500" />
+                    <span className="text-blue-500">React</span>
+                  </div>
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <IoLogoNodejs className="text-green-500" />
+                    <span className="text-green-500">Node.js</span>
+                  </div>
+                </div>
+                <div className="flex justify-between flex-wrap gap-4">
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <FaHtml5 className="text-orange-600" />
+                    <span className="text-orange-600">HTML5</span>
+                  </div>
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <FaCss3Alt className="text-blue-600" />
+                    <span className="text-blue-600">CSS3</span>
+                  </div>
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <IoLogoJavascript className="text-yellow-500" />
+                    <span className="text-yellow-500">JavaScript</span>
+                  </div>
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <SiTailwindcss className="text-blue-400" />
+                    <span className="text-blue-400">Tailwind CSS</span>
+                  </div>
+                </div>
+                <div className="flex justify-between flex-wrap gap-4">
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <FaGitAlt className="text-orange-500" />
+                    <span className="text-orange-500">Git</span>
+                  </div>
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <FaGithub className="text-slate-700 " />
+                    <span className="text-slate-700 ">GitHub</span>
+                  </div>
+                </div>
+                <div className="flex justify-between flex-wrap gap-4">
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <SiReactrouter className="text-red-600" />
+                    <span className="text-red-600">React router</span>
+                  </div>
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <SiRedux className="text-purple-600" />
+                    <span className="text-purple-600">Redux</span>
+                  </div>
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <IoLogoFirebase className="text-yellow-400" />
+                    <span className="text-yellow-400">Firebase</span>
+                  </div>
+                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                    <SiMongoose className="text-red-600" />
+                    <span className="text-red-600">Mongoose</span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <h4 className="text-lg">Currently learning:</h4>
+                  <div className="flex justify-between flex-wrap gap-4">
+                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                      <SiNextdotjs className="text-amber-500" />
+                      <span className="text-amber-500">Next.js</span>
+                    </div>
+                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                      <SiTypescript className="text-blue-500" />
+                      <span className="text-blue-500">TypeScript</span>
+                    </div>
+                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                      <TbBrandThreejs className="text-slate-700 " />
+                      <span className="text-slate-700 ">Three.js</span>
+                    </div>
+                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                      <TiCloudStorage className="text-blue-500" />
+                      <span className="text-blue-500">Cloud Storage</span>
+                    </div>
+                  </div>
+                  <div className="flex justify-between flex-wrap gap-4">
+                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                      <SiSolidity className="text-slate-500" />
+                      <span className="text-slate-500">Solidity</span>
+                    </div>
+                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                      <SiSvelte className="text-amber-600" />
+                      <span className="text-amber-600">Svelt</span>
+                    </div>
+                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                      <SiWebrtc className="text-amber-600" />
+                      <span className="text-amber-600">WebRtc</span>
+                    </div>
+                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
+                      <SiSocketdotio className="text-amber-600" />
+                      <span className="text-amber-600">webSocket</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          <div className="flex gap-5 relative flex-col sm:flex-row">
-            <div className="w-full sm:w-[20%] sm:sticky h-fit top-0 flex flex-col p-3 sm:p-0">
+            <div className="col-start-3 row-start-1  p-3 rounded-lg dark:bg-slate-900  bg-slate-300 ">
               <p>Buy This Web App For:</p>
               <div className="flex gap-1 text-red-500">
                 <span className="text-nowrap">1,150</span>
@@ -164,127 +325,40 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="dark:text-purple-500 text-xs sm:text-sm border-b-8 p-5 gap-5 flex flex-col border-t-8 border-cyan-400 rounded-xl sm:w-[60%]">
-              <h3 className="font-semibold text-center">Tech Stack</h3>
-              <div className="flex justify-between flex-wrap gap-4">
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <SiMongodb className="text-green-500" />
-                  <span className="text-green-500">MongoDB</span>
-                </div>
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <SiExpress className="text-gray-500" />
-                  <span className="text-gray-500">Express</span>
-                </div>
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <FaReact className="text-blue-500" />
-                  <span className="text-blue-500">React</span>
-                </div>
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <IoLogoNodejs className="text-green-500" />
-                  <span className="text-green-500">Node.js</span>
-                </div>
-              </div>
-              <div className="flex justify-between flex-wrap gap-4">
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <FaHtml5 className="text-orange-600" />
-                  <span className="text-orange-600">HTML5</span>
-                </div>
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <FaCss3Alt className="text-blue-600" />
-                  <span className="text-blue-600">CSS3</span>
-                </div>
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <IoLogoJavascript className="text-yellow-500" />
-                  <span className="text-yellow-500">JavaScript</span>
-                </div>
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <SiTailwindcss className="text-blue-400" />
-                  <span className="text-blue-400">Tailwind CSS</span>
-                </div>
-              </div>
-              <div className="flex justify-between flex-wrap gap-4">
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <FaGitAlt className="text-orange-500" />
-                  <span className="text-orange-500">Git</span>
-                </div>
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <FaGithub className="text-slate-950 " />
-                  <span className="text-slate-950 ">GitHub</span>
-                </div>
-              </div>
-              <div className="flex justify-between flex-wrap gap-4">
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <SiRedux className="text-purple-600" />
-                  <span className="text-purple-600">Redux</span>
-                </div>
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <IoLogoFirebase className="text-yellow-400" />
-                  <span className="text-yellow-400">Firebase</span>
-                </div>
-                <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                  <SiMongoose className="text-red-600" />
-                  <span className="text-red-600">Mongoose</span>
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <h4 className="text-lg">Currently learning:</h4>
-                <div className="flex justify-between flex-wrap gap-4">
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <SiNextdotjs className="text-amber-500" />
-                    <span className="text-amber-500">Next.js</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <SiTypescript className="text-blue-500" />
-                    <span className="text-blue-500">TypeScript</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <TbBrandThreejs className="text-slate-950 " />
-                    <span className="text-slate-950 ">Three.js</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <TiCloudStorage className="text-blue-500" />
-                    <span className="text-blue-500">Cloud Storage</span>
-                  </div>
-                </div>
+
+            <div className="flex flex-col gap-3 P-3dark:text-purple-500 dark:bg-slate-900  bg-slate-300  border-l-8 p-3 border-cyan-500 rounded-xl row-span-2 col-start-3 row-start-2 ">
+              <h4 className="text-lg font-semibold pb-5">Services</h4>
+              <ul className="list-disc list-inside">
+                <li>Web Development</li>
+                <li>RESTful APIs</li>
+                <li>3D Websites</li>
+                <li>Responsive Design</li>
+                <li>Tech Advices</li>
+                <li>I Upload some lessons</li>
+              </ul>
+              <div className="flex flex-col gap-3">
+                <p>At the end of the day, I just need some support </p>
+                <Button outline>
+                  Buy me coffee{" "}
+                  <GiCoffeeCup className="text-amber-600 text-xl " />
+                </Button>
+                <p className="text-red-600 text-xs">
+                  Payment system doesn't function yet
+                </p>
               </div>
             </div>
-            <p className="sm:w-[20%]">
-              I am a free lancer looking for a powerful team
-            </p>
+
+            <div className="p-3 rounded-lg col-span-2 col-start-1 row-start-3 dark:bg-slate-900  bg-slate-300  flex flex-col items-center justify-around">
+              <FaComputer className="text-7xl" />
+              <p className="">
+                Are you ready to take your projects to the next level with a
+                skilled freelancer who thrives on collaboration? I am a
+                passionate freelancer seeking to join forces with a powerful
+                team, where together we can achieve extraordinary results.
+              </p>
+            </div>
           </div>
-          <div className=" dark:text-purple-500 dark:bg-slate-950  bg-slate-300 h-fit  border-l-4 p-3 border-cyan-500 rounded-xl">
-            <h4 className="text-lg font-semibold pb-5">Services</h4>
-            <ul className="list-disc list-inside">
-              <li>Web Development</li>
-              <li>RESTful APIs</li>
-              <li>3D Websites</li>
-              <li>Responsive Design</li>
-              <li>Tech Advices</li>
-              <li>I Upload some lessons</li>
-            </ul>
-          </div>
-          <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 lg:text-4xl md:text-2xl">
-            <Carousel pauseOnHover>
-              <div className="font-bold flex flex-col h-full items-center justify-center bg-slate-300 dark:bg-slate-950  p-4">
-                <GiBrain className="text-cyan-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl" />
-                <p className="text-purple-500 text-base sm:text-lg md:text-xl lg:text-2xl mt-4 text-center">
-                  Share the knowledge with the world
-                </p>
-              </div>
-              <div className="font-bold flex flex-col h-full items-center justify-center bg-slate-300 dark:bg-slate-950  p-4">
-                <GiStoneCrafting className="text-cyan-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl" />
-                <p className="text-purple-500 text-base sm:text-lg md:text-xl lg:text-2xl mt-4 text-center">
-                  I Upload a collection of cool projects
-                </p>
-              </div>
-              <div className="font-bold flex flex-col h-full items-center justify-center bg-slate-300 dark:bg-slate-950  p-4">
-                <GiFizzingFlask className="text-cyan-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl" />
-                <p className="text-purple-500 text-base sm:text-lg md:text-xl lg:text-2xl mt-4 text-center">
-                  Share your latest research with the world
-                </p>
-              </div>
-            </Carousel>
-          </div>
+
           <div className="bg-slate-950 rounded-xl">
             <div className="p-3 flex flex-col gap-2">
               <h2 className="text-2xl font-semibold text-cyan-500">
