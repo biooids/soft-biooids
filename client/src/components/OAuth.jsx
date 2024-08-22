@@ -61,10 +61,10 @@ function OAuth() {
         disabled={loading}
       >
         {loading ? (
-          <>
+          <div className="flex justify-center items-center">
             <Spinner size="sm" />
             <span className="p-3">Waiting...</span>
-          </>
+          </div>
         ) : (
           <>
             <FaGoogle className="w-6 h-6 text-red-700 mr-2" />

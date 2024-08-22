@@ -130,7 +130,7 @@ function FooterComp() {
         <div className="w-full sm:flex sm:items-center sm:justify-between mt-5">
           <Footer.Copyright href="#" by="soft-biooids" year={2024} />
         </div>
-        <div>version : 1.1.4</div>
+        <div>version : 1.2.8</div>
       </div>
     </Footer>
   );

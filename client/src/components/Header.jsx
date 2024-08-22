@@ -81,7 +81,7 @@ function Header() {
             className="w-full h-full object-cover"
           />
         </span>
-        Soft-biooid
+        Soft-biooids
       </Link>
 
       <form onSubmit={handleSubmit}>

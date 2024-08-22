@@ -162,7 +162,7 @@ export default function Search() {
             Project results:
           </h1>
         </div>
-        <div className="flex flex-wrap justify-center items-center sm:grid top-projects gap-4">
+        <div className="top-projects flex flex-wrap justify-center items-center sm:grid gap-4">
           {loading &&
             Array.from({ length: 9 }).map((_, index) => (
               <PostCardSkeleton key={index} />
@@ -172,8 +172,11 @@ export default function Search() {
           )}
           {!loading &&
             posts &&
-            posts.map((post) => <PostCard key={post._id} post={post} />)}
+            posts
+              .filter((post) => post.mainPost) // Filter to only include mainPost
+              .map((post) => <PostCard key={post._id} post={post} />)}
         </div>
+
         <div className="m-7 flex flex-col md:flex-row gap-5">
           {showMore && (
             <button

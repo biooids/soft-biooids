@@ -9,7 +9,6 @@ import {
 } from "react-icons/hi";
 import { Button, Table } from "flowbite-react";
 import { useSelector } from "react-redux";
-import DashboardGraph from "./DashboardGraph";
 
 export default function DashboardComp() {
   const [users, setUsers] = useState([]);

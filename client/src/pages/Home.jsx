@@ -375,13 +375,19 @@ export default function Home() {
               </Link>
             </div>
             <div className="home-container gap-3 flex flex-col p-3 sm:grid">
-              {loading
-                ? Array.from({ length: 6 }).map((_, index) => (
-                    <PostCardSkeleton key={index} />
-                  ))
-                : latestArticles.map((article, index) => (
-                    <PostCard key={index} post={article} />
-                  ))}
+              {loading ? (
+                Array.from({ length: 6 }).map((_, index) => (
+                  <PostCardSkeleton key={index} />
+                ))
+              ) : latestArticles.length > 0 ? (
+                latestArticles.map((article, index) => (
+                  <PostCard key={index} post={article} />
+                ))
+              ) : (
+                <div className="text-xl font-semibold text-red-600">
+                  No articles posts available.
+                </div>
+              )}
             </div>
           </div>
 
@@ -414,7 +420,7 @@ export default function Home() {
               )}
             </div>
 
-            <div className="p-3 flex flex-col gap-2">
+            {/* <div className="p-3 flex flex-col gap-2">
               <h2 className="text-2xl font-semibold text-cyan-500">
                 Latest Projects & proposal:
               </h2>
@@ -427,14 +433,20 @@ export default function Home() {
               </Link>
             </div>
             <div className="home-container gap-3 flex flex-col p-3 sm:grid">
-              {loading
-                ? Array.from({ length: 6 }).map((_, index) => (
-                    <PostCardSkeleton key={index} />
-                  ))
-                : latestPosts.map((post, index) => (
-                    <PostCard key={index} post={post} />
-                  ))}
-            </div>
+              {loading ? (
+                Array.from({ length: 6 }).map((_, index) => (
+                  <PostCardSkeleton key={index} />
+                ))
+              ) : latestPosts.length > 0 ? (
+                latestPosts.map((post, index) => (
+                  <PostCard key={index} post={post} />
+                ))
+              ) : (
+                <div className="text-xl font-semibold text-red-600">
+                  No collections available.
+                </div>
+              )}
+            </div> */}
           </div>
 
           <div className="bg-slate-950 rounded-xl">
@@ -453,13 +465,19 @@ export default function Home() {
               </Link>
             </div>
             <div className="home-container gap-3 flex flex-col p-3 sm:grid">
-              {loading
-                ? Array.from({ length: 6 }).map((_, index) => (
-                    <PostCardSkeleton key={index} />
-                  ))
-                : latestResearches.map((research, index) => (
-                    <PostCard key={index} post={research} />
-                  ))}
+              {loading ? (
+                Array.from({ length: 6 }).map((_, index) => (
+                  <PostCardSkeleton key={index} />
+                ))
+              ) : latestResearches.length > 0 ? (
+                latestResearches.map((research, index) => (
+                  <PostCard key={index} post={research} />
+                ))
+              ) : (
+                <div className="text-xl font-semibold text-red-600">
+                  No research posts available.
+                </div>
+              )}
             </div>
           </div>
 

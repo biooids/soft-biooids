@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import About from "./pages/About";
+import About from "./pages/about/About";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -39,6 +39,7 @@ import CreateUpdate from "./pages/Updates/CreateUpdate";
 import UpdatePage from "./pages/Updates/UpdatePage";
 import MyUpdates from "./pages/Updates/myUpdates/MyUpdates";
 import UpdateUpdate from "./pages/Updates/myUpdates/UpdateUpdate";
+import Collections from "./pages/collections/Collections";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
           <Route path="/terms" element={<TermsAndCond />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/post/:postSlug" element={<PostPage />} />
+
           <Route element={<HomeLayoute />}>
             <Route path="/articles" element={<Articles />}>
               <Route index element={<AllArticles />} />
@@ -70,6 +72,10 @@ function App() {
               <Route path="article/:articleSlug" element={<ArticlePage />} />
               <Route path="my-articles" element={<MyArticles />} />
             </Route>
+
+            {/* collections collections collections 👇 collections collections*/}
+            {/* collections collections collections collections collections*/}
+            <Route path="/collections" element={<Collections />} />
 
             <Route path="/researches" element={<Researches />}>
               <Route index element={<AllResearch />} />
@@ -97,6 +103,7 @@ function App() {
               <Route path="my-updates" element={<MyUpdates />} />
             </Route>
           </Route>
+
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>

@@ -6,6 +6,8 @@ import {
   GiFizzingFlask,
   GiNewspaper,
 } from "react-icons/gi";
+import { MdCollections } from "react-icons/md";
+
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function HomeSidebar() {
@@ -78,6 +80,15 @@ function HomeSidebar() {
         >
           <GiStoneCrafting className="text-2xl font-bold" />
           <span>biooids</span>
+        </Link>
+        <Link
+          to="/collections"
+          className={` cursor-pointer flex hover:bg-slate-600  items-center p-2 gap-2 rounded-lg ${
+            location.pathname === "/collections" ? "bg-slate-600" : ""
+          }`}
+        >
+          <MdCollections className="text-2xl font-bold" />
+          <span>Collections</span>
         </Link>
       </div>
 
