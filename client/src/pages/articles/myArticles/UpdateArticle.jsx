@@ -52,6 +52,7 @@ export default function UpdateArticle() {
         }
         setPublishError(null);
         const article = data.articles[0];
+        console.log(article);
         setFormData(article);
         setExternalLink(article.externalLink || "");
       } catch (error) {
@@ -114,7 +115,7 @@ export default function UpdateArticle() {
         externalLink,
       };
       const res = await fetch(
-        `/api/article/updateArticle/${articleId}/${currentUser._id}`,
+        `/api/article/updateArticle/${articleId}/${formData.userId._id}`,
         {
           method: "PUT",
           headers: {

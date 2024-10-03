@@ -20,6 +20,7 @@ import { app } from "../firebase";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from "react-router-dom";
+import { modules, formats } from "../reactQuill";
 
 function CreatePost() {
   const [publishError, setPublishError] = useState(null);
@@ -198,6 +199,8 @@ function CreatePost() {
 
         <ReactQuill
           theme="snow"
+          modules={modules}
+          formats={formats}
           value={formData.content || ""}
           placeholder="Write something..."
           className="h-72 mb-12"
@@ -207,14 +210,16 @@ function CreatePost() {
           }}
           readOnly={isQuillDisabled}
         />
+
         <TextInput
           type="text"
           placeholder="External Link"
           id="externalLink"
           value={externalLink}
           onChange={(e) => setExternalLink(e.target.value)}
-          className="flex-1"
+          className="flex-1 mt-5"
         />
+
         <Button
           className="text-cyan-100"
           type="submit"

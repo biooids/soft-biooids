@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PostCardSkeleton from "../../components/PostCardSkeleton";
 import PostCard from "../../components/PostCard";
+import { Select } from "flowbite-react";
 
 function Collections() {
   const [posts, setPosts] = useState([]);
@@ -8,6 +9,7 @@ function Collections() {
   const [showMore, setShowMore] = useState(false);
   const [showLess, setShowLess] = useState(false);
   const [isFetchingMore, setIsFetchingMore] = useState(false);
+  const [category, setCategory] = useState("all"); // State to track the selected category
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -19,13 +21,20 @@ function Collections() {
       }
       const data = await res.json();
       const nonMainPosts = data.posts.filter((post) => !post.mainPost);
-      setPosts(nonMainPosts);
+
+      // Filter by category if a specific one is selected
+      const filteredPosts =
+        category === "all"
+          ? nonMainPosts
+          : nonMainPosts.filter((post) => post.category === category);
+
+      setPosts(filteredPosts);
       setLoading(false);
-      setShowMore(nonMainPosts.length === 9);
+      setShowMore(filteredPosts.length === 9);
     };
 
     fetchPosts();
-  }, []);
+  }, [category]); // Re-fetch when category changes
 
   const handleShowMore = async () => {
     setIsFetchingMore(true);
@@ -38,8 +47,13 @@ function Collections() {
     }
     const data = await res.json();
     const nonMainPosts = data.posts.filter((post) => !post.mainPost);
-    setPosts([...posts, ...nonMainPosts]);
-    setShowMore(nonMainPosts.length === 9);
+    const filteredPosts =
+      category === "all"
+        ? nonMainPosts
+        : nonMainPosts.filter((post) => post.category === category);
+
+    setPosts([...posts, ...filteredPosts]);
+    setShowMore(filteredPosts.length === 9);
     setShowLess(true);
     setIsFetchingMore(false);
   };
@@ -52,6 +66,23 @@ function Collections() {
 
   return (
     <div>
+      {/* Category Selector */}
+      <div className="mb-4 flex justify-center mt-3 ">
+        <Select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="all">All Categories</option>
+          <option value="html">HTML and CSS</option>
+          <option value="javascript">Javascript, HTML and CSS</option>
+          <option value="reactjs">React JS and Tailwind</option>
+          <option value="threejs">Three JS</option>
+          <option value="typescript">TypeScript</option>
+          <option value="mongo">Mongo DB</option>
+          <option value="node">Node and Express</option>
+          <option value="mern">MERN Stack</option>
+          <option value="nextjs">MERN and Next JS</option>
+          <option value="videoapp">WebSockets and WebRTC</option>
+        </Select>
+      </div>
+
       <div className="top-projects flex flex-wrap justify-center items-center sm:grid gap-4">
         {loading &&
           Array.from({ length: 9 }).map((_, index) => (

@@ -40,6 +40,7 @@ import UpdatePage from "./pages/Updates/UpdatePage";
 import MyUpdates from "./pages/Updates/myUpdates/MyUpdates";
 import UpdateUpdate from "./pages/Updates/myUpdates/UpdateUpdate";
 import Collections from "./pages/collections/Collections";
+import Ads from "./pages/ads/Ads";
 
 function App() {
   return (
@@ -102,6 +103,7 @@ function App() {
               <Route path="update/:updateSlug" element={<UpdatePage />} />
               <Route path="my-updates" element={<MyUpdates />} />
             </Route>
+            <Route path="/ads" element={<Ads />} />
           </Route>
 
           <Route element={<PrivateRoute />}>

@@ -1,10 +1,11 @@
-import { Button, Select, Sidebar } from "flowbite-react";
+import { Button, Select, Sidebar, TextInput } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import PostCard from "../components/PostCard";
 import PostCardSkeleton from "../components/PostCardSkeleton";
 import HomeSidebar from "./HomeSidebar";
 import codingGif from "../assets/a2.gif";
+import { AiOutlineSearch } from "react-icons/ai";
 
 export default function Search() {
   const [sidebarData, setSidebarData] = useState({
@@ -21,6 +22,35 @@ export default function Search() {
 
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [urlSearchTerm, setUrlSearchTerm] = useState("");
+  const [inputSearchTerm, setInputSearchTerm] = useState("");
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get("searchTerm");
+    if (searchTermFromUrl) {
+      setUrlSearchTerm(searchTermFromUrl);
+      setInputSearchTerm(searchTermFromUrl.replace(/\+/g, " "));
+    } else {
+      setUrlSearchTerm("");
+      setInputSearchTerm("");
+    }
+  }, [location.search]);
+
+  useEffect(() => {
+    if (location.pathname === "/search") {
+      setInputSearchTerm(urlSearchTerm.replace(/\+/g, " "));
+    } else {
+      setInputSearchTerm("");
+    }
+  }, [location.pathname, urlSearchTerm]);
+
+  const handleSubmitSearch = (e) => {
+    e.preventDefault();
+    const sanitizedSearchTerm = inputSearchTerm.trim().replace(/\s+/g, "+");
+    navigate(`/search?searchTerm=${sanitizedSearchTerm}`);
+  };
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -149,9 +179,21 @@ export default function Search() {
         </form>
         <HomeSidebar />
       </Sidebar>
-      <div className="w-full ">
+      <div className="w-full flex flex-col gap-3 mt-3">
+        <form onSubmit={handleSubmitSearch} className="w-fit pl-3">
+          <TextInput
+            type="text"
+            placeholder="search and click enter"
+            rightIcon={AiOutlineSearch}
+            className="hidden lg:inline"
+            value={inputSearchTerm}
+            onChange={(e) => {
+              setInputSearchTerm(e.target.value);
+            }}
+          />
+        </form>
         <div>
-          <div className="w-full h-[200px] p-3 ">
+          <div className="w-full h-[300px] p-3 ">
             <img
               src={codingGif}
               alt="coding gif"
@@ -167,13 +209,20 @@ export default function Search() {
             Array.from({ length: 9 }).map((_, index) => (
               <PostCardSkeleton key={index} />
             ))}
+
           {!loading && posts.length === 0 && (
             <p className="text-xl text-gray-500">No posts found.</p>
           )}
+
           {!loading &&
-            posts &&
+            posts.length > 0 &&
+            posts.filter((post) => post.mainPost).length === 0 && (
+              <p className="text-xl text-gray-500">No posts found.</p>
+            )}
+
+          {!loading &&
             posts
-              .filter((post) => post.mainPost) // Filter to only include mainPost
+              .filter((post) => post.mainPost)
               .map((post) => <PostCard key={post._id} post={post} />)}
         </div>
 

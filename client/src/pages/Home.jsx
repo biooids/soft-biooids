@@ -112,10 +112,8 @@ export default function Home() {
               <h2 className="dark:text-cyan-400 text-xs sm:text-sm">
                 Discover and contribute to a world by sharing your articles,
                 projects, and share your research to the world at Soft-Biooids.
-                Engage with a platform that allows you to share and explore
-                content on various topics you want. Connect with a community of
-                like-minded individuals passionate about knowledge and
-                innovation.
+                Connect with a community of like-minded individuals passionate
+                about knowledge and innovation.
               </h2>
               <p className="dark:text-purple-500 flex gap-3">
                 I am a full stack developer:{" "}
@@ -127,12 +125,18 @@ export default function Home() {
                   <FaGithub />
                 </a>
               </p>
-              <Link
-                to="/search"
-                className="text-sm sm:text-lg dark:text-cyan-100 font-bold  hover:dark:text-cyan-300 underline w-fit"
-              >
-                Click here to Explore &#8594;
-              </Link>
+              <div className=" bg-white bg-opacity-5 p-3 rounded-lg flex flex-col">
+                <div className="flex gap-3 p-3">
+                  <div className=" h-3 w-3 bg-cyan-500 rounded-full"></div>
+                  <div className=" h-3 w-3 bg-cyan-500 rounded-full"></div>
+                  <div className=" h-3 w-3 bg-cyan-500 rounded-full"></div>
+                </div>
+                <p className="p-3">
+                  " const passion = (programmer) ={">"}{" "}
+                  programmer.includes('love') ? true : false stop it ; <br />
+                  console.log( passion(me) ); <br />$ true "
+                </p>
+              </div>
             </div>
             <div className="top-0 h-full relative">
               <img
@@ -144,42 +148,42 @@ export default function Home() {
           </div>
           <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 lg:text-4xl md:text-2xl">
             <Carousel pauseOnHover slideInterval={1000}>
-              <div className="font-bold flex flex-col h-full items-center justify-center bg-gradient-to-br from-slate-500 to-slate-900 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-950 p-4 rounded-lg shadow-lg">
+              <div className="font-bold flex flex-col gap-3 h-full items-center justify-center bg-gradient-to-br from-slate-500 to-slate-900 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-950 p-4 rounded-lg shadow-lg">
                 <GiBrain className="text-cyan-500 text-5xl md:text-6xl lg:text-7xl animate-bounce" />
                 <p className="text-purple-400 text-sm md:text-xl lg:text-2xl mt-4 text-center">
                   Empower the world with knowledge. Let's create, innovate, and
                   share.
                 </p>
-                <a
-                  href="#portfolio"
-                  className="mt-2 text-teal-400 hover:text-teal-300 text-sm md:text-base"
+                <Link
+                  to="/articles"
+                  className="bg-white w-fit p-3 rounded-lg bg-opacity-20 hover:bg-opacity-30 text-sm"
                 >
-                  Explore my work
-                </a>
+                  Explore Articles
+                </Link>
               </div>
-              <div className="font-bold flex flex-col h-full items-center justify-center bg-gradient-to-br from-slate-500 to-slate-900 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-950 p-4 rounded-lg shadow-lg">
+              <div className="font-bold flex flex-col gap-3 h-full items-center justify-center bg-gradient-to-br from-slate-500 to-slate-900 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-950 p-4 rounded-lg shadow-lg">
                 <GiStoneCrafting className="text-cyan-500 text-5xl md:text-6xl lg:text-7xl animate-pulse" />
                 <p className="text-purple-400 text-sm md:text-xl lg:text-2xl mt-4 text-center">
                   Crafting cool projects that make an impact.
                 </p>
-                <a
-                  href="#projects"
-                  className="mt-2 text-teal-400 hover:text-teal-300 text-sm md:text-base"
+                <Link
+                  to="/search"
+                  className="bg-white w-fit p-3 rounded-lg bg-opacity-20 hover:bg-opacity-30 text-sm"
                 >
                   Check out my creations
-                </a>
+                </Link>
               </div>
-              <div className="font-bold flex flex-col h-full items-center justify-center bg-gradient-to-br from-slate-500 to-slate-900 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-950 p-4 rounded-lg shadow-lg">
+              <div className="font-bold flex flex-col gap-3 h-full items-center justify-center bg-gradient-to-br from-slate-500 to-slate-900 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-950 p-4 rounded-lg shadow-lg">
                 <GiFizzingFlask className="text-cyan-500 text-5xl md:text-6xl lg:text-7xl animate-ping" />
                 <p className="text-purple-400 text-sm md:text-xl lg:text-2xl mt-4 text-center">
                   Discover innovative research that sparks change.
                 </p>
-                <a
-                  href="#research"
-                  className="mt-2 text-teal-400 hover:text-teal-300 text-sm md:text-base"
+                <Link
+                  to="/researches"
+                  className="bg-white w-fit p-3 rounded-lg bg-opacity-20 hover:bg-opacity-30 text-sm"
                 >
                   See my latest studies
-                </a>
+                </Link>
               </div>
             </Carousel>
           </div>

@@ -90,12 +90,14 @@ function PostPage() {
             Title: {post && post.title}
           </h3>
         </div>
+
         <Link
           to={`/search?category=${post.category}`}
           className="self-center mt-5 underline hover:dark:text-cyan-300"
         >
           <div>Category: {post && post.category} &#8594;</div>
         </Link>
+
         <img
           src={post && post.image}
           alt={post && post.title}

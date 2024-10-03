@@ -7,6 +7,7 @@ import {
   GiNewspaper,
 } from "react-icons/gi";
 import { MdCollections } from "react-icons/md";
+import { RiAdvertisementFill } from "react-icons/ri";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -49,7 +50,7 @@ function HomeSidebar() {
           }`}
         >
           <GiBrain className="text-2xl font-bold" />
-          <span>Brains</span>
+          <span>Articles</span>
         </Link>
 
         <Link
@@ -79,7 +80,7 @@ function HomeSidebar() {
           }`}
         >
           <GiStoneCrafting className="text-2xl font-bold" />
-          <span>biooids</span>
+          <span>My Projects</span>
         </Link>
         <Link
           to="/collections"
@@ -89,6 +90,16 @@ function HomeSidebar() {
         >
           <MdCollections className="text-2xl font-bold" />
           <span>Collections</span>
+        </Link>
+
+        <Link
+          to="/ads"
+          className={` cursor-pointer flex hover:bg-slate-600  items-center p-2 gap-2 rounded-lg ${
+            location.pathname === "/ads" ? "bg-slate-600" : ""
+          }`}
+        >
+          <RiAdvertisementFill className="text-2xl font-bold" />
+          <span>Ads+Bonus</span>
         </Link>
       </div>
 
@@ -111,7 +122,7 @@ function HomeSidebar() {
           }`}
         >
           <GiBrain className="text-xl" />
-          <span className="text-xs">Brains</span>
+          <span className="text-xs">Articles</span>
         </Link>
         <Link
           to="/researches"
@@ -129,7 +140,7 @@ function HomeSidebar() {
           }`}
         >
           <GiStoneCrafting className="text-xl" />
-          <span className="text-xs">biooids</span>
+          <span className="text-xs">Projects</span>
         </Link>
         <Link
           to="/updates"
@@ -139,6 +150,16 @@ function HomeSidebar() {
         >
           <GiNewspaper className="text-xl" />
           <span className="text-xs">Updates</span>
+        </Link>
+
+        <Link
+          to="/ads"
+          className={`flex flex-col justify-center items-center p-1 rounded-lg ${
+            location.pathname === "/ads" ? "bg-purple-900" : ""
+          }`}
+        >
+          <RiAdvertisementFill className="text-xl" />
+          <span className="text-xs">Ads+Bonus</span>
         </Link>
       </div>
     </>

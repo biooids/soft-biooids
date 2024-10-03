@@ -23,27 +23,6 @@ function Header() {
   const location = useLocation();
   const { currentUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
-  const [urlSearchTerm, setUrlSearchTerm] = useState("");
-  const [inputSearchTerm, setInputSearchTerm] = useState("");
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const searchTermFromUrl = urlParams.get("searchTerm");
-    if (searchTermFromUrl) {
-      setUrlSearchTerm(searchTermFromUrl);
-      setInputSearchTerm(searchTermFromUrl.replace(/\+/g, " "));
-    } else {
-      setUrlSearchTerm("");
-      setInputSearchTerm("");
-    }
-  }, [location.search]);
-
-  useEffect(() => {
-    if (location.pathname === "/search") {
-      setInputSearchTerm(urlSearchTerm.replace(/\+/g, " "));
-    } else {
-      setInputSearchTerm("");
-    }
-  }, [location.pathname, urlSearchTerm]);
 
   const handleSignout = async () => {
     try {
@@ -62,12 +41,6 @@ function Header() {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const sanitizedSearchTerm = inputSearchTerm.trim().replace(/\s+/g, "+");
-    navigate(`/search?searchTerm=${sanitizedSearchTerm}`);
-  };
-
   return (
     <Navbar className="border-b-2 bg-cyan-50  ">
       <Link
@@ -84,18 +57,6 @@ function Header() {
         Soft-biooids
       </Link>
 
-      <form onSubmit={handleSubmit}>
-        <TextInput
-          type="text"
-          placeholder="search and click enter"
-          rightIcon={AiOutlineSearch}
-          className="hidden lg:inline"
-          value={inputSearchTerm}
-          onChange={(e) => {
-            setInputSearchTerm(e.target.value);
-          }}
-        />
-      </form>
       <Link
         to="/search"
         className="text-xs sm:text-sm text-teal-500 font-bold hover:underline"
@@ -106,16 +67,6 @@ function Header() {
       </Link>
 
       <div className="flex w-full sm:w-fit gap-2 justify-between md:order-2 mt-3 sm:mt-0">
-        <Button
-          className="w-12 h-10  sm:inline"
-          color="gray"
-          pill
-          onClick={() => {
-            dispatch(toggleTheme());
-          }}
-        >
-          {theme === "light" ? <FaSun /> : <FaMoon />}
-        </Button>
         {currentUser ? (
           <Dropdown
             className="z-50"
@@ -165,6 +116,15 @@ function Header() {
           </Link>
         </Navbar.Link>
       </Navbar.Collapse>
+
+      <span
+        onClick={() => {
+          dispatch(toggleTheme());
+        }}
+        className="hover:cursor-pointer mt-3 sm:mt-0"
+      >
+        {theme === "light" ? <FaSun /> : <FaMoon />}
+      </span>
     </Navbar>
   );
 }

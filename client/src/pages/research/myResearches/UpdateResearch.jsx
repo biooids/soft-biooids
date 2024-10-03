@@ -115,7 +115,7 @@ export default function UpdateResearch() {
         externalLink,
       };
       const res = await fetch(
-        `/api/research/updateResearch/${researchId}/${currentUser._id}`,
+        `/api/research/updateResearch/${researchId}/${formData.userId._id}`,
         {
           method: "PUT",
           headers: {
