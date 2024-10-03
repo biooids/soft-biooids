@@ -8,7 +8,8 @@ import articleRoutes from "./routes/article.route.js";
 import researchRoutes from "./routes/research.route.js";
 import commentRoutes from "./routes/comment.route.js";
 import articleCommentRoutes from "./routes/articleComment.route.js";
-import updateRoutes from "./routes/update.route.js"; // Import the new update routes
+import updateRoutes from "./routes/update.route.js";
+import adRoutes from "./routes/ad.route.js";
 
 import path from "path";
 import cookieParser from "cookie-parser";
@@ -43,7 +44,8 @@ app.use("/api/article", articleRoutes);
 app.use("/api/research", researchRoutes);
 app.use("/api/comment", commentRoutes);
 app.use("/api/articleComment", articleCommentRoutes);
-app.use("/api/update", updateRoutes); // Add the new update routes
+app.use("/api/update", updateRoutes);
+app.use("/api/ad", adRoutes);
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
 
