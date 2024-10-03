@@ -48,6 +48,7 @@ import {
 
 import HomeSidebar from "./HomeSidebar";
 import { Button, Carousel } from "flowbite-react";
+import TechStack from "./TechStack";
 
 export default function Home() {
   const [latestArticles, setLatestArticles] = useState([]);
@@ -188,114 +189,7 @@ export default function Home() {
             </Carousel>
           </div>
           <div className=" flex flex-col sm:grid grid-cols-3 grid-rows-3 gap-4 ">
-            <div className="col-span-2 row-span-2 dark:bg-slate-900  bg-slate-300  overflow-hidden border-b-8 border-t-8 border-cyan-400 rounded-xl ">
-              <div className="dark:text-purple-500 text-xs p-5 gap-5 flex flex-col  ">
-                <h3 className="font-semibold text-center">Tech Stack</h3>
-                <div className="flex justify-between flex-wrap gap-4">
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <SiMongodb className="text-green-500" />
-                    <span className="text-green-500">MongoDB</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <SiExpress className="text-gray-500" />
-                    <span className="text-gray-500">Express</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <FaReact className="text-blue-500" />
-                    <span className="text-blue-500">React</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <IoLogoNodejs className="text-green-500" />
-                    <span className="text-green-500">Node.js</span>
-                  </div>
-                </div>
-                <div className="flex justify-between flex-wrap gap-4">
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <FaHtml5 className="text-orange-600" />
-                    <span className="text-orange-600">HTML5</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <FaCss3Alt className="text-blue-600" />
-                    <span className="text-blue-600">CSS3</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <IoLogoJavascript className="text-yellow-500" />
-                    <span className="text-yellow-500">JavaScript</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <SiTailwindcss className="text-blue-400" />
-                    <span className="text-blue-400">Tailwind CSS</span>
-                  </div>
-                </div>
-                <div className="flex justify-between flex-wrap gap-4">
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <FaGitAlt className="text-orange-500" />
-                    <span className="text-orange-500">Git</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <FaGithub className="text-slate-700 " />
-                    <span className="text-slate-700 ">GitHub</span>
-                  </div>
-                </div>
-                <div className="flex justify-between flex-wrap gap-4">
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <SiReactrouter className="text-red-600" />
-                    <span className="text-red-600">React router</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <SiRedux className="text-purple-600" />
-                    <span className="text-purple-600">Redux</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <IoLogoFirebase className="text-yellow-400" />
-                    <span className="text-yellow-400">Firebase</span>
-                  </div>
-                  <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                    <SiMongoose className="text-red-600" />
-                    <span className="text-red-600">Mongoose</span>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <h4 className="text-lg">Currently learning:</h4>
-                  <div className="flex justify-between flex-wrap gap-4">
-                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                      <SiNextdotjs className="text-amber-500" />
-                      <span className="text-amber-500">Next.js</span>
-                    </div>
-                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                      <SiTypescript className="text-blue-500" />
-                      <span className="text-blue-500">TypeScript</span>
-                    </div>
-                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                      <TbBrandThreejs className="text-slate-700 " />
-                      <span className="text-slate-700 ">Three.js</span>
-                    </div>
-                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                      <TiCloudStorage className="text-blue-500" />
-                      <span className="text-blue-500">Cloud Storage</span>
-                    </div>
-                  </div>
-                  <div className="flex justify-between flex-wrap gap-4">
-                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                      <SiSolidity className="text-slate-500" />
-                      <span className="text-slate-500">Solidity</span>
-                    </div>
-                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                      <SiSvelte className="text-amber-600" />
-                      <span className="text-amber-600">Svelt</span>
-                    </div>
-                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                      <SiWebrtc className="text-amber-600" />
-                      <span className="text-amber-600">WebRtc</span>
-                    </div>
-                    <div className="flex flex-col items-center border-b-4 border-purple-500 rounded-lg p-2">
-                      <SiSocketdotio className="text-amber-600" />
-                      <span className="text-amber-600">webSocket</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <TechStack />
 
             <div className="col-start-3 row-start-1  p-3 rounded-lg dark:bg-slate-900  bg-slate-300 ">
               <p>Buy This Web App For:</p>
@@ -366,38 +260,6 @@ export default function Home() {
           <div className="bg-slate-950 rounded-xl">
             <div className="p-3 flex flex-col gap-2">
               <h2 className="text-2xl font-semibold text-cyan-500">
-                Latest Articles:
-              </h2>
-              <span className="text-xs text-purple-300">
-                you can upload yours too 🤷‍♂️!
-              </span>
-              <Link
-                to="/articles"
-                className="text-cyan-500 bg-slate-600 hover:bg-slate-700 p-2 rounded-lg flex justify-center items-center"
-              >
-                See more
-              </Link>
-            </div>
-            <div className="home-container gap-3 flex flex-col p-3 sm:grid">
-              {loading ? (
-                Array.from({ length: 6 }).map((_, index) => (
-                  <PostCardSkeleton key={index} />
-                ))
-              ) : latestArticles.length > 0 ? (
-                latestArticles.map((article, index) => (
-                  <PostCard key={index} post={article} />
-                ))
-              ) : (
-                <div className="text-xl font-semibold text-red-600">
-                  No articles posts available.
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="bg-slate-950 rounded-xl">
-            <div className="p-3 flex flex-col gap-2">
-              <h2 className="text-2xl font-semibold text-cyan-500">
                 My Top Projects
               </h2>
               <span className="text-xs text-purple-300">biooids projects</span>
@@ -419,7 +281,7 @@ export default function Home() {
                   .map((post) => <PostCard key={post._id} post={post} />)
               ) : (
                 <div className="text-xl font-semibold text-red-600">
-                  No main posts available.
+                  No Top projects available yet !.
                 </div>
               )}
             </div>
@@ -451,6 +313,38 @@ export default function Home() {
                 </div>
               )}
             </div> */}
+          </div>
+
+          <div className="bg-slate-950 rounded-xl">
+            <div className="p-3 flex flex-col gap-2">
+              <h2 className="text-2xl font-semibold text-cyan-500">
+                Latest Articles:
+              </h2>
+              <span className="text-xs text-purple-300">
+                you can upload yours too 🤷‍♂️!
+              </span>
+              <Link
+                to="/articles"
+                className="text-cyan-500 bg-slate-600 hover:bg-slate-700 p-2 rounded-lg flex justify-center items-center"
+              >
+                See more
+              </Link>
+            </div>
+            <div className="home-container gap-3 flex flex-col p-3 sm:grid">
+              {loading ? (
+                Array.from({ length: 6 }).map((_, index) => (
+                  <PostCardSkeleton key={index} />
+                ))
+              ) : latestArticles.length > 0 ? (
+                latestArticles.map((article, index) => (
+                  <PostCard key={index} post={article} />
+                ))
+              ) : (
+                <div className="text-xl font-semibold text-red-600">
+                  No articles posts available.
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="bg-slate-950 rounded-xl">
