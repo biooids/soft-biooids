@@ -1,32 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import UpdateCard from "./UpdateCard";
-import UpdateCardSkeleton from "./UpdateCardSkeleton";
 
-function AllUpdates() {
-  const [updates, setUpdates] = useState([]);
+import AdCard from "./AdCard";
+import AdCardSkeleton from "./AdCardSkeleton";
+
+function AllAds() {
+  const [ads, setAds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
-  const [totalUpdates, setTotalUpdates] = useState(0);
-  const updatesPerPage = 9;
+  const [totalAds, setTotalAds] = useState(0);
+  const adsPerPage = 9;
   const { searchTerm, category } = useOutletContext();
 
-  const fetchUpdates = async (page, searchTerm = "", category = "") => {
+  const fetchAds = async (page, searchTerm = "", category = "") => {
     try {
       const res = await fetch(
-        `/api/update/getUpdates?startIndex=${
-          page * updatesPerPage
-        }&limit=${updatesPerPage}&searchTerm=${encodeURIComponent(
+        `/api/ad/getAds?startIndex=${
+          page * adsPerPage
+        }&limit=${adsPerPage}&searchTerm=${encodeURIComponent(
           searchTerm
         )}&category=${encodeURIComponent(category)}`
       );
       const data = await res.json();
       if (page === 0) {
-        setUpdates(data.updates);
+        setAds(data.ads);
       } else {
-        setUpdates((prevUpdates) => [...prevUpdates, ...data.updates]);
+        setAds((prevAds) => [...prevAds, ...data.ads]);
       }
-      setTotalUpdates(data.totalUpdate);
+      setTotalAds(data.totalAds);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -36,27 +37,27 @@ function AllUpdates() {
   useEffect(() => {
     setLoading(true);
     setPage(0);
-    fetchUpdates(0, searchTerm, category);
+    fetchAds(0, searchTerm, category);
   }, [searchTerm, category]);
 
   const loadMore = () => {
     const newPage = page + 1;
     setPage(newPage);
-    fetchUpdates(newPage, searchTerm, category);
+    fetchAds(newPage, searchTerm, category);
   };
 
   return (
-    <div className="all-updates gap-3 flex flex-col p-3 sm:grid">
+    <div className="all-ads gap-3 flex flex-col p-3 sm:grid">
       {loading ? (
         Array.from({ length: 3 }).map((_, index) => (
-          <UpdateCardSkeleton key={index} />
+          <AdCardSkeleton key={index} />
         ))
-      ) : updates.length > 0 ? (
+      ) : ads.length > 0 ? (
         <>
-          {updates.map((update) => (
-            <UpdateCard key={update._id} update={update} />
+          {ads.map((ad) => (
+            <AdCard key={ad._id} ad={ad} externalLink={ad.externalLink} />
           ))}
-          {updates.length < totalUpdates && (
+          {ads.length < totalAds && (
             <button
               className="load-more-button bg-teal-500 text-white py-2 px-4 rounded-md mt-4"
               onClick={loadMore}
@@ -66,10 +67,10 @@ function AllUpdates() {
           )}
         </>
       ) : (
-        <div>No updates available.</div>
+        <div>No Ads available.</div>
       )}
     </div>
   );
 }
 
-export default AllUpdates;
+export default AllAds;

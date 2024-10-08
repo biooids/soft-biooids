@@ -2,11 +2,11 @@ import { Alert, Button, Modal, Textarea } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import UpdateComment from "./UpdateComment";
+import AdComment from "./AdComment";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Spinner } from "flowbite-react";
 
-export default function UpdateCommentSection({ updateId }) {
+export default function AdCommentSection({ adId }) {
   const { currentUser } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
   const [commentError, setCommentError] = useState(null);
@@ -31,7 +31,7 @@ export default function UpdateCommentSection({ updateId }) {
         },
         body: JSON.stringify({
           content: comment,
-          postId: updateId,
+          postId: adId,
           userId: currentUser._id,
         }),
       });
@@ -40,7 +40,7 @@ export default function UpdateCommentSection({ updateId }) {
         setComment("");
         setCommentError(null);
         setComments([data, ...comments]);
-        setTotalComments(totalComments + 1); // Update total comments
+        setTotalComments(totalComments + 1);
       }
     } catch (error) {
       setCommentError(error.message);
@@ -52,7 +52,7 @@ export default function UpdateCommentSection({ updateId }) {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const res = await fetch(`/api/comment/getPostComments/${updateId}`);
+        const res = await fetch(`/api/comment/getPostComments/${adId}`);
         if (res.ok) {
           const data = await res.json();
           setComments(data.comments);
@@ -63,7 +63,7 @@ export default function UpdateCommentSection({ updateId }) {
       }
     };
     getComments();
-  }, [updateId]);
+  }, [adId]);
 
   const handleLike = async (commentId) => {
     try {
@@ -113,7 +113,7 @@ export default function UpdateCommentSection({ updateId }) {
       });
       if (res.ok) {
         setComments(comments.filter((comment) => comment._id !== commentId));
-        setTotalComments(totalComments - 1); // Update total comments
+        setTotalComments(totalComments - 1);
       }
     } catch (error) {
       console.log(error.message);
@@ -185,7 +185,7 @@ export default function UpdateCommentSection({ updateId }) {
           </p>
         ) : (
           comments.map((comment) => (
-            <UpdateComment
+            <AdComment
               key={comment._id}
               comment={comment}
               onLike={handleLike}

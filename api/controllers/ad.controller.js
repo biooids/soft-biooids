@@ -104,7 +104,7 @@ export const updateAd = async (req, res, next) => {
   }
 
   try {
-    const updatedAd = await Ad.findByIdAndAd(
+    const updatedAd = await Ad.findByIdAndUpdate(
       req.params.adId,
       {
         $set: {

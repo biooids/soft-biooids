@@ -1,6 +1,6 @@
 import React from "react";
 
-function UpdateCardSkeleton() {
+function AdCardSkeleton() {
   return (
     <div className="animate-pulse border-2 border-teal-500 h-[400px] overflow-hidden rounded-lg  w-full">
       <div className="h-[240px] w-full bg-gray-300" />
@@ -13,4 +13,4 @@ function UpdateCardSkeleton() {
   );
 }
 
-export default UpdateCardSkeleton;
+export default AdCardSkeleton;

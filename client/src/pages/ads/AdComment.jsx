@@ -4,7 +4,7 @@ import { FaThumbsUp } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Button, Spinner, Textarea } from "flowbite-react";
 
-export default function UpdateComment({ comment, onLike, onEdit, onDelete }) {
+function AdComment({ comment, onLike, onEdit, onDelete }) {
   const [user, setUser] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
@@ -156,3 +156,5 @@ export default function UpdateComment({ comment, onLike, onEdit, onDelete }) {
     </div>
   );
 }
+
+export default AdComment;

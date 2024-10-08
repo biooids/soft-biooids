@@ -15,15 +15,15 @@ function UpdateCard({ update }) {
   const authorUsername = userId?.username || "anonymous";
 
   return (
-    <div className="group relative border-2 border-teal-500 h-[450px] overflow-hidden rounded-lg transition-all">
+    <div className="flex flex-col sm:flex-row">
       <Link to={`/updates/update/${update.slug}`}>
         <img
           src={update.image}
           alt="update cover"
-          className="h-[240px] w-full object-cover group-hover:h-[150px] transition-all duration-300 z-20"
+          className="h-[300px] sm:w-[300px] rounded-lg object-cover "
         />
       </Link>
-      <div className="p-3 flex flex-col gap-1">
+      <div className="p-3 flex flex-col gap-1 bg-white bg-opacity-5 flex-grow">
         <div className="flex items-center">
           <img
             src={authorProfilePicture}
@@ -38,7 +38,7 @@ function UpdateCard({ update }) {
         <span className="italic text-sm">{update.category}</span>
         <Link
           to={`/updates/update/${update.slug}`}
-          className="z-10 bottom-0 absolute left-0 right-0 border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white transition-all duration-300 text-center py-2 rounded-md !rounded-tl-none m-2"
+          className="p-3 dark:bg-slate-700 rounded-lg text-center dark:hover:bg-slate-900 bg-slate-100 hover:bg-slate-300 mt-3"
         >
           Read more
         </Link>

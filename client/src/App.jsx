@@ -41,6 +41,11 @@ import MyUpdates from "./pages/Updates/myUpdates/MyUpdates";
 import UpdateUpdate from "./pages/Updates/myUpdates/UpdateUpdate";
 import Collections from "./pages/collections/Collections";
 import Ads from "./pages/ads/Ads";
+import AllAds from "./pages/ads/AllAds";
+import CreateAd from "./pages/ads/CreateAd";
+import UpdateAd from "./pages/ads/myAds/UpdateAd";
+import AdPage from "./pages/ads/AdPage";
+import MyAds from "./pages/ads/myAds/MyAds";
 
 function App() {
   return (
@@ -93,6 +98,7 @@ function App() {
 
             <Route path="/updates" element={<Updates />}>
               <Route index element={<AllUpdates />} />
+
               <Route element={<OnlyAdminPrivateRoute />}>
                 <Route path="create-update" element={<CreateUpdate />} />
                 <Route
@@ -100,10 +106,22 @@ function App() {
                   element={<UpdateUpdate />}
                 />
               </Route>
+
               <Route path="update/:updateSlug" element={<UpdatePage />} />
               <Route path="my-updates" element={<MyUpdates />} />
             </Route>
-            <Route path="/ads" element={<Ads />} />
+
+            <Route path="/ads" element={<Ads />}>
+              <Route index element={<AllAds />} />
+
+              <Route element={<OnlyAdminPrivateRoute />}>
+                <Route path="create-ad" element={<CreateAd />} />
+                <Route path="update-ad/:adId" element={<UpdateAd />} />
+              </Route>
+
+              <Route path="ad/:adSlug" element={<AdPage />} />
+              <Route path="my-ads" element={<MyAds />} />
+            </Route>
           </Route>
 
           <Route element={<PrivateRoute />}>

@@ -20,7 +20,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from "react-router-dom";
 
-function CreateUpdate() {
+function CreateAd() {
   const [publishError, setPublishError] = useState(null);
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -77,17 +77,17 @@ function CreateUpdate() {
     e.preventDefault();
     try {
       setIsSubmitting(true);
-      const updateData = {
+      const adData = {
         ...formData,
         externalLink,
       };
-      console.log("Update Data with External Link:", updateData);
-      const res = await fetch("/api/update/create", {
+      console.log("Ad Data with External Link:", adData);
+      const res = await fetch("/api/ad/createAd", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(updateData),
+        body: JSON.stringify(adData),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -97,7 +97,7 @@ function CreateUpdate() {
       }
       if (res.ok) {
         setPublishError(null);
-        navigate(`/updates/update/${data.slug}`);
+        navigate(`/ads/ad/${data.slug}`);
       }
     } catch (error) {
       setPublishError("Something went wrong: " + error.message);
@@ -108,9 +108,7 @@ function CreateUpdate() {
 
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">
-        Create an Update
-      </h1>
+      <h1 className="text-center text-3xl my-7 font-semibold">Create an ad</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
@@ -230,4 +228,4 @@ function CreateUpdate() {
   );
 }
 
-export default CreateUpdate;
+export default CreateAd;

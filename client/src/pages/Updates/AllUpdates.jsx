@@ -46,7 +46,7 @@ function AllUpdates() {
   };
 
   return (
-    <div className="all-updates gap-3 flex flex-col p-3 sm:grid">
+    <div className="all-updates gap-3 flex flex-col p-3 ">
       {loading ? (
         Array.from({ length: 3 }).map((_, index) => (
           <UpdateCardSkeleton key={index} />

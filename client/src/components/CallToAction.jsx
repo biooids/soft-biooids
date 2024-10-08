@@ -6,7 +6,7 @@ import { MdEmail } from "react-icons/md";
 
 function CallToAction() {
   return (
-    <div className="flex-col flex sm:flex-row p-3 border border-cyan-600 justify-center items-center rounded-3xl text-center dark:text-cyan-300  gap-3">
+    <div className="flex-col flex sm:flex-row p-3 border border-cyan-500 justify-center items-center rounded-3xl text-center  gap-3">
       <div className="flex flex-col justify-center items-center gap-2   ">
         <h2 className="font-bold text-sm md:text-2xl">
           All big tech companies started as a group of small commited legends

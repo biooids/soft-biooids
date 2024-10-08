@@ -22,11 +22,11 @@ function HomeSidebar() {
 
   return (
     <>
-      <div className="md:block hidden sticky top-5">
+      <div className="md:block hidden sticky top-5 text-xs">
         <div
           onClick={handleUpdateProfileClick}
-          className={` cursor-pointer flex hover:bg-slate-600  items-center p-2 gap-2 rounded-lg  ${
-            location.pathname === "/profile" ? "bg-slate-600" : ""
+          className={` cursor-pointer flex hover:bg-slate-700  items-center p-2 gap-2 rounded-lg  ${
+            location.pathname === "/profile" ? "bg-slate-700" : ""
           }`}
         >
           <FaUserCircle className="text-2xl font-bold" />
@@ -35,8 +35,8 @@ function HomeSidebar() {
 
         <Link
           to="/home"
-          className={`  cursor-pointer flex hover:bg-slate-600  items-center p-2 gap-2 rounded-lg ${
-            location.pathname === "/home" ? "bg-slate-600" : ""
+          className={`  cursor-pointer flex hover:bg-slate-700  items-center p-2 gap-2 rounded-lg ${
+            location.pathname === "/home" ? "bg-slate-700" : ""
           }`}
         >
           <FaHome className="text-2xl font-bold" />
@@ -45,8 +45,8 @@ function HomeSidebar() {
 
         <Link
           to="/articles"
-          className={` cursor-pointer flex hover:bg-slate-600  items-center p-2 gap-2 rounded-lg ${
-            location.pathname === "/articles" ? "bg-slate-600" : ""
+          className={` cursor-pointer flex hover:bg-slate-700  items-center p-2 gap-2 rounded-lg ${
+            location.pathname === "/articles" ? "bg-slate-700" : ""
           }`}
         >
           <GiBrain className="text-2xl font-bold" />
@@ -55,8 +55,8 @@ function HomeSidebar() {
 
         <Link
           to="/researches"
-          className={` cursor-pointer flex hover:bg-slate-600  items-center p-2 gap-2 rounded-lg ${
-            location.pathname === "/researches" ? "bg-slate-600" : ""
+          className={` cursor-pointer flex hover:bg-slate-700  items-center p-2 gap-2 rounded-lg ${
+            location.pathname === "/researches" ? "bg-slate-700" : ""
           }`}
         >
           <GiFizzingFlask className="text-2xl font-bold" />
@@ -65,8 +65,8 @@ function HomeSidebar() {
 
         <Link
           to="/updates"
-          className={` cursor-pointer flex hover:bg-slate-600  items-center p-2 gap-2 rounded-lg ${
-            location.pathname === "/updates" ? "bg-slate-600" : ""
+          className={` cursor-pointer flex hover:bg-slate-700  items-center p-2 gap-2 rounded-lg ${
+            location.pathname === "/updates" ? "bg-slate-700" : ""
           }`}
         >
           <GiNewspaper className="text-2xl font-bold" />
@@ -75,8 +75,8 @@ function HomeSidebar() {
 
         <Link
           to="/search"
-          className={` cursor-pointer flex hover:bg-slate-600  items-center p-2 gap-2 rounded-lg ${
-            location.pathname === "/search" ? "bg-slate-600" : ""
+          className={` cursor-pointer flex hover:bg-slate-700  items-center p-2 gap-2 rounded-lg ${
+            location.pathname === "/search" ? "bg-slate-700" : ""
           }`}
         >
           <GiStoneCrafting className="text-2xl font-bold" />
@@ -84,8 +84,8 @@ function HomeSidebar() {
         </Link>
         <Link
           to="/collections"
-          className={` cursor-pointer flex hover:bg-slate-600  items-center p-2 gap-2 rounded-lg ${
-            location.pathname === "/collections" ? "bg-slate-600" : ""
+          className={` cursor-pointer flex hover:bg-slate-700  items-center p-2 gap-2 rounded-lg ${
+            location.pathname === "/collections" ? "bg-slate-700" : ""
           }`}
         >
           <MdCollections className="text-2xl font-bold" />
@@ -94,8 +94,8 @@ function HomeSidebar() {
 
         <Link
           to="/ads"
-          className={` cursor-pointer flex hover:bg-slate-600  items-center p-2 gap-2 rounded-lg ${
-            location.pathname === "/ads" ? "bg-slate-600" : ""
+          className={` cursor-pointer flex hover:bg-slate-700  items-center p-2 gap-2 rounded-lg ${
+            location.pathname === "/ads" ? "bg-slate-700" : ""
           }`}
         >
           <RiAdvertisementFill className="text-2xl font-bold" />

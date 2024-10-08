@@ -24,7 +24,7 @@ import { useSelector } from "react-redux";
 import { helix } from "ldrs";
 helix.register();
 
-export default function UpdateUpdate() {
+function UpdateAd() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
@@ -36,18 +36,18 @@ export default function UpdateUpdate() {
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
-  const { updateId } = useParams();
+  const { adId } = useParams();
   const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
-    const fetchUpdate = async () => {
-      if (!updateId) {
-        setPublishError("Update ID is missing");
+    const fetchAd = async () => {
+      if (!adId) {
+        setPublishError("Ad ID is missing");
         return;
       }
 
       try {
-        const res = await fetch(`/api/update/getUpdates?updateId=${updateId}`);
+        const res = await fetch(`/api/ad/getAds?adId=${adId}`);
         const data = await res.json();
         if (!res.ok) {
           console.log(data.message);
@@ -55,9 +55,9 @@ export default function UpdateUpdate() {
           return;
         }
         setPublishError(null);
-        const update = data.updates[0];
-        setFormData(update);
-        setExternalLink(update.externalLink || "");
+        const ad = data.ads[0];
+        setFormData(ad);
+        setExternalLink(ad.externalLink || "");
       } catch (error) {
         console.log(error.message);
         setPublishError(error.message);
@@ -65,8 +65,8 @@ export default function UpdateUpdate() {
         setIsLoading(false);
       }
     };
-    fetchUpdate();
-  }, [updateId]);
+    fetchAd();
+  }, [adId]);
 
   const handleUploadImage = async () => {
     try {
@@ -113,20 +113,17 @@ export default function UpdateUpdate() {
 
     try {
       setIsSubmitting(true);
-      const updateData = {
+      const adData = {
         ...formData,
         externalLink,
       };
-      const res = await fetch(
-        `/api/update/updateUpdate/${updateId}/${currentUser._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updateData),
-        }
-      );
+      const res = await fetch(`/api/ad/updateAd/${adId}/${currentUser._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(adData),
+      });
       const data = await res.json();
       if (!res.ok) {
         setPublishError(data.message);
@@ -134,7 +131,7 @@ export default function UpdateUpdate() {
         return;
       }
       setPublishError(null);
-      navigate(`/updates/update/${data.slug}`);
+      navigate(`/ads/ad/${data.slug}`);
     } catch (error) {
       setPublishError("Something went wrong");
     } finally {
@@ -152,7 +149,7 @@ export default function UpdateUpdate() {
 
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">Update Update</h1>
+      <h1 className="text-center text-3xl my-7 font-semibold">Update Ad</h1>
       <form className="flex flex-col gap-4 " onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
@@ -256,7 +253,7 @@ export default function UpdateUpdate() {
               <Spinner size="lg" /> Submitting
             </div>
           ) : (
-            "Update Update"
+            "Update Ad"
           )}
         </Button>
 
@@ -269,3 +266,5 @@ export default function UpdateUpdate() {
     </div>
   );
 }
+
+export default UpdateAd;

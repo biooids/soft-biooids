@@ -42,10 +42,10 @@ function Header() {
   };
 
   return (
-    <Navbar className="border-b-2 bg-cyan-50  ">
+    <Navbar className="border-b-2   ">
       <Link
         to="/"
-        className="sm:text-xl text-sm self-center whitespace-nowrap font-semibold dark:text-cyan-100 flex items-center justify-center gap-1 sm:gap-3 "
+        className="sm:text-xl text-sm self-center whitespace-nowrap font-semibold  flex items-center justify-center gap-1 sm:gap-3 "
       >
         <span className="w-12 h-12 rounded-full overflow-hidden  inline-block">
           <img
@@ -111,8 +111,8 @@ function Header() {
           </Link>
         </Navbar.Link>
         <Navbar.Link active={path === "/projects"} as={"div"}>
-          <Link to="/projects" className="flex justify-center">
-            Sell projects
+          <Link to="/ads" className="flex justify-center">
+            🔥 Ads+Bonus
           </Link>
         </Navbar.Link>
       </Navbar.Collapse>

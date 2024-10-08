@@ -3,7 +3,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: rgba(0, 0, 0, 70%);
+  background-color: rgba(0, 0, 0, 0.7);
   background-blend-mode: darken;
   overflow: hidden;
 }
@@ -61,4 +61,45 @@
   to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
+}
+
+.home-page-1 {
+  background-image: url(./assets/backgrounds/home-page-1.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+  overflow: hidden;
+}
+
+.home-page-2 {
+  background-image: url(./assets/backgrounds/home-page-2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+  overflow: hidden;
+}
+
+.home-page-3 {
+  background-image: url(./assets/backgrounds/home-page-3.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+  overflow: hidden;
+}
+
+.home-page-4 {
+  background-image: url(./assets/backgrounds/home-page-4.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+
+  overflow: hidden;
 }

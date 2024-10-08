@@ -32,7 +32,7 @@ import { TiCloudStorage } from "react-icons/ti";
 
 function TechStack() {
   return (
-    <section className="col-span-2  row-span-2 dark:bg-slate-900 bg-slate-300 overflow-hidden border-b-8 border-t-8 border-cyan-400 rounded-xl">
+    <section className="col-span-2  row-span-2  overflow-hidden border-cyan-500 border-b-8 border-t-8  rounded-xl">
       <div className="dark:text-purple-500 p-5 flex flex-col gap-3 justify-between h-full">
         <h3 className="font-semibold text-center">My Tech Stack</h3>
 
