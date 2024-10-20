@@ -35,7 +35,7 @@ function Landing() {
     <div className="landing-container min-h-screen m-auto relative">
       <div className="cover-container block"></div>
       <div className="relative z-10 ">
-        <div className=" absolute sm:w-96 p-5 font-Poppins">
+        <div className=" absolute sm:w-96 sm:p-5 font-Poppins">
           <img src={gear} alt="" className="landing-image" />
           <p className="bg-slate-900 bg-opacity-90 p-3 rounded-lg">
             I thrive in dynamic environments where I can apply my expertise in
@@ -44,7 +44,7 @@ function Landing() {
             drive innovation and growth.
           </p>
         </div>
-        <div className=" absolute bottom-0 right-0 sm:w-96 p-5 font-Poppins">
+        <div className=" absolute bottom-0 right-0 sm:w-96 sm:p-5 font-Poppins">
           <p className="bg-slate-900 bg-opacity-90  p-3 rounded-lg">
             Throughout my career choice, I have honed my skills in JavaScript
             and its library React, MongoDB for data bases, node js with express
