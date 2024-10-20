@@ -19,6 +19,7 @@ export default function Search() {
   const [showMore, setShowMore] = useState(false);
   const [showLess, setShowLess] = useState(false);
   const [isFetchingMore, setIsFetchingMore] = useState(false);
+  const [topPosts, setTopPosts] = useState([]);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -52,6 +53,16 @@ export default function Search() {
     navigate(`/search?searchTerm=${sanitizedSearchTerm}`);
   };
 
+  const fetchTopPosts = async () => {
+    try {
+      const res = await fetch("/api/post/getTopPosts");
+      const data = await res.json();
+      setTopPosts(data.topPosts);
+    } catch (error) {
+      console.error("Failed to fetch top posts", error);
+    }
+  };
+
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get("searchTerm") || "";
@@ -68,16 +79,19 @@ export default function Search() {
       setLoading(true);
       const searchQuery = urlParams.toString();
       const res = await fetch(`/api/post/getposts?${searchQuery}`);
+
       if (!res.ok) {
         setLoading(false);
         return;
       }
       const data = await res.json();
       setPosts(data.posts);
+
       setLoading(false);
       setShowMore(data.posts.length === 9);
     };
 
+    fetchTopPosts();
     fetchPosts();
   }, [location.search]);
 
@@ -203,6 +217,31 @@ export default function Search() {
           <h1 className="text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-3 text-center">
             Project results:
           </h1>
+        </div>
+        <div className=" rounded-lg backdrop-blur-lg bg-white bg-opacity-5">
+          <div className="p-3 flex flex-col gap-2">
+            <h2 className="text-2xl font-semibold ">My Top Projects</h2>
+            <p className="text-xs ">biooids top projects</p>
+          </div>
+
+          <div className="home-container gap-3 flex flex-col p-3 sm:grid">
+            {loading ? (
+              Array.from({ length: 6 }).map((_, index) => (
+                <PostCardSkeleton key={index} />
+              ))
+            ) : topPosts.length > 0 ? (
+              topPosts.map((post) => <PostCard key={post._id} post={post} />)
+            ) : (
+              <div className="text-xl font-semibold text-red-600">
+                No Top projects available yet!.
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="p-3 flex flex-col gap-2">
+          <h2 className="text-2xl font-semibold ">All Projects</h2>
+          <p className="text-xs ">All biooids projects</p>
         </div>
         <div className="top-projects flex flex-wrap justify-center items-center sm:grid gap-4">
           {loading &&

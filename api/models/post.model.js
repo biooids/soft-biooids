@@ -40,6 +40,10 @@ const postSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    topPost: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

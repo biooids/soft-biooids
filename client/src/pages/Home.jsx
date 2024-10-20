@@ -29,8 +29,20 @@ export default function Home() {
   const [latestResearches, setLatestResearches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [mainPosts, setMainPosts] = useState([]);
+  const [topPosts, setTopPosts] = useState([]);
+
+  const fetchTopPosts = async () => {
+    try {
+      const res = await fetch("/api/post/getTopPosts");
+      const data = await res.json();
+      setTopPosts(data.topPosts);
+    } catch (error) {
+      console.error("Failed to fetch top posts", error);
+    }
+  };
 
   useEffect(() => {
+    fetchTopPosts();
     const fetchData = async () => {
       try {
         const [postsRes, articlesRes, researchesRes] = await Promise.all([
@@ -56,11 +68,11 @@ export default function Home() {
 
         // Filter main posts
         const mainPosts = postsData.posts.filter((post) => post.mainPost);
+        setMainPosts(mainPosts);
 
         setLatestPosts(formattedPosts);
         setLatestArticles(formattedArticles);
         setLatestResearches(formattedResearches);
-        setMainPosts(mainPosts);
 
         setLoading(false);
       } catch (error) {
@@ -268,7 +280,35 @@ export default function Home() {
             <div className=" rounded-lg backdrop-blur-lg bg-white bg-opacity-5">
               <div className="p-3 flex flex-col gap-2">
                 <h2 className="text-2xl font-semibold ">My Top Projects</h2>
-                <span className="text-xs ">biooids projects</span>
+                <span className="text-xs ">biooids top projects</span>
+                <Link
+                  to="/search"
+                  className=" bg-white bg-opacity-5 hover:bg-opacity-10 p-2 rounded-lg flex justify-center items-center"
+                >
+                  See more
+                </Link>
+              </div>
+              <div className="home-container gap-3 flex flex-col p-3 sm:grid">
+                {loading ? (
+                  Array.from({ length: 6 }).map((_, index) => (
+                    <PostCardSkeleton key={index} />
+                  ))
+                ) : topPosts.length > 0 ? (
+                  topPosts
+                    .slice(0, 6)
+                    .map((post) => <PostCard key={post._id} post={post} />)
+                ) : (
+                  <div className="text-xl font-semibold text-red-600">
+                    No Top projects available yet !.
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className=" rounded-lg backdrop-blur-lg bg-white bg-opacity-5">
+              <div className="p-3 flex flex-col gap-2">
+                <h2 className="text-2xl font-semibold ">All Projects</h2>
+                <span className="text-xs ">All biooids projects</span>
                 <Link
                   to="/search"
                   className=" bg-white bg-opacity-5 hover:bg-opacity-10 p-2 rounded-lg flex justify-center items-center"
@@ -287,7 +327,7 @@ export default function Home() {
                     .map((post) => <PostCard key={post._id} post={post} />)
                 ) : (
                   <div className="text-xl font-semibold text-red-600">
-                    No Top projects available yet !.
+                    No projects available yet !.
                   </div>
                 )}
               </div>

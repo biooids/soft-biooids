@@ -32,6 +32,7 @@ function CreatePost() {
   const [isQuillDisabled, setIsQuillDisabled] = useState(false);
   const [externalLink, setExternalLink] = useState("");
   const [isMainPost, setIsMainPost] = useState(false);
+  const [isTopPost, setIsTopPost] = useState(false);
   const navigate = useNavigate();
 
   const handleUploadImage = async () => {
@@ -84,6 +85,7 @@ function CreatePost() {
         ...formData,
         externalLink,
         mainPost: isMainPost,
+        topPost: isTopPost,
       };
       const res = await fetch("/api/post/create", {
         method: "POST",
@@ -159,6 +161,17 @@ function CreatePost() {
             }}
           />
           <label htmlFor="mainPost">Main Post</label>
+        </div>
+        <div className="flex items-center gap-2">
+          <Checkbox
+            id="topPost"
+            checked={isTopPost}
+            onChange={(e) => {
+              setIsTopPost(e.target.checked);
+              setFormData({ ...formData, topPost: e.target.checked });
+            }}
+          />
+          <label htmlFor="mainPost">Top Post</label>
         </div>
 
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">

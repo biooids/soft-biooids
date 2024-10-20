@@ -25,6 +25,7 @@ export const create = async (req, res, next) => {
       slug,
       userId: req.user.id,
       mainPost: req.body.mainPost || false,
+      topPost: req.body.topPost || false,
     });
 
     const savedPost = await newPost.save();
@@ -34,7 +35,6 @@ export const create = async (req, res, next) => {
   }
 };
 
-// Get posts with optional filters
 // Get posts with optional filters
 export const getposts = async (req, res, next) => {
   try {
@@ -90,6 +90,22 @@ export const getposts = async (req, res, next) => {
   }
 };
 
+export const getTopPosts = async (req, res, next) => {
+  try {
+    const topPosts = await Post.find({ topPost: true })
+      .sort({ updatedAt: -1 })
+      .populate({
+        path: "userId",
+        select: "username profilePicture",
+      });
+
+    res.status(200).json({ topPosts });
+  } catch (error) {
+    console.error("Error in getTopPosts:", error);
+    next(error);
+  }
+};
+
 // Delete a post by ID
 export const deletepost = async (req, res, next) => {
   try {
@@ -128,6 +144,7 @@ export const updatepost = async (req, res, next) => {
           image: req.body.image,
           externalLink: req.body.externalLink,
           mainPost: req.body.mainPost,
+          topPost: req.body.topPost,
         },
       },
       { new: true }

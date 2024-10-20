@@ -10,6 +10,7 @@ import {
 } from "flowbite-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { formats, modules } from "../reactQuill";
 import {
   getDownloadURL,
   getStorage,
@@ -34,7 +35,10 @@ export default function UpdatePost() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isQuillDisabled, setIsQuillDisabled] = useState(false);
   const [externalLink, setExternalLink] = useState("");
+
   const [isMainPost, setIsMainPost] = useState(false);
+  const [isTopPost, setIsTopPost] = useState(false);
+
   const { postId } = useParams();
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -56,6 +60,7 @@ export default function UpdatePost() {
         setFormData(post);
         setExternalLink(post.externalLink || "");
         setIsMainPost(post.mainPost || false);
+        setIsTopPost(post.topPost || false);
       } catch (error) {
         console.log(error.message);
         setPublishError(error.message);
@@ -114,6 +119,7 @@ export default function UpdatePost() {
         ...formData,
         externalLink,
         mainPost: isMainPost,
+        topPost: isTopPost,
       };
       const res = await fetch(
         `/api/post/updatepost/${formData._id}/${currentUser._id}`,
@@ -199,6 +205,18 @@ export default function UpdatePost() {
           <label htmlFor="mainPost">Main Post</label>
         </div>
 
+        <div className="flex items-center gap-2">
+          <Checkbox
+            id="topPost"
+            checked={isTopPost}
+            onChange={(e) => {
+              setIsTopPost(e.target.checked);
+              setFormData({ ...formData, topPost: e.target.checked });
+            }}
+          />
+          <label htmlFor="mainPost">Top Post</label>
+        </div>
+
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
           <FileInput
             type="file"
@@ -236,6 +254,8 @@ export default function UpdatePost() {
 
         <ReactQuill
           theme="snow"
+          modules={modules}
+          formats={formats}
           value={formData.content || ""}
           placeholder="Write something..."
           className="h-72 mb-12"

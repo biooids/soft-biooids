@@ -20,13 +20,14 @@ function Collections() {
         return;
       }
       const data = await res.json();
-      const nonMainPosts = data.posts.filter((post) => !post.mainPost);
-
+      const nonMainOrTopPosts = data.posts.filter(
+        (post) => !post.mainPost && !post.topPost
+      );
       // Filter by category if a specific one is selected
       const filteredPosts =
         category === "all"
-          ? nonMainPosts
-          : nonMainPosts.filter((post) => post.category === category);
+          ? nonMainOrTopPosts
+          : nonMainOrTopPosts.filter((post) => post.category === category);
 
       setPosts(filteredPosts);
       setLoading(false);
