@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -13,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <PersistGate persistor={persistor}>
     <Provider store={store}>
       <ThemeProvider>
-        <div className="max-w-[1600px] m-auto">
+        <div className=" m-auto">
           <NetworkStatus />
           <App />
         </div>
